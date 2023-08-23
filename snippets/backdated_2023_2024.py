@@ -1,4 +1,4 @@
-﻿# Backdated Python example (2023-2024) - Created on 2023-08-21 14:10:00
+﻿# Backdated Python example (2023-2024) - Created on 2023-08-23 16:46:00
 class BackdatedProcessor2023:
     def __init__(self, data):
         self.data = data
@@ -11,7 +11,7 @@ class BackdatedProcessor2023:
         return result
 
 def main():
-    # Sample data for 2023-08-21
+    # Sample data for 2023-08-23
     data = [2, 6, -4, 11, 9, 0, -6]
     processor = BackdatedProcessor2023(data)
     result = processor.process()
