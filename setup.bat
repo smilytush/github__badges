@@ -24,7 +24,7 @@ powershell -ExecutionPolicy Bypass -Command "Start-Process powershell -ArgumentL
 echo.
 echo Setup complete!
 echo.
-echo Your Green Commits automation is now set up and will run daily at 10:00 AM.
+echo Your Green Commits automation is now set up and will run daily at 11:30 AM.
 echo.
 echo Press any key to exit...
 pause > nul

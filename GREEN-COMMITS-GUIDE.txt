@@ -57,7 +57,7 @@ The setup has been completed with the following steps:
 
 3. Task Scheduler Setup:
    - To complete the automation, run setup_task_admin.bat as administrator
-   - This will create a daily task that runs at 10:00 AM
+   - This will create a daily task that runs at 11:30 AM
    - The task will execute green_commit.ps1 automatically
 
 FINAL STEP REQUIRED:
@@ -74,7 +74,7 @@ To verify that the system is working correctly:
 1. Check Task Scheduler:
    - Open Task Scheduler (press Win+R, type taskschd.msc, and press Enter)
    - Look for the task named "GitHub Green Commit" in the Task Scheduler Library
-   - Make sure it's enabled and set to run daily at 10:00 AM
+   - Make sure it's enabled and set to run daily at 11:30 AM
 
 2. Test the Script:
    - Right-click on the task in Task Scheduler and select "Run"
@@ -105,7 +105,7 @@ You can customize this automation by:
    - Open Task Scheduler
    - Find the "GitHub Green Commit" task
    - Right-click and select Properties
-   - Go to the Triggers tab and change the time (currently 10:00 AM)
+   - Go to the Triggers tab and change the time (currently 11:30 AM)
 
 4. Adding GitHub Profile Statistics:
    - Add this to your GitHub profile README:
@@ -199,8 +199,8 @@ name: Green Commits
 
 on:
   schedule:
-    # Run at 10:00 AM UTC every day
-    - cron: '0 10 * * *'
+    # Run at 11:30 AM UTC every day
+    - cron: '30 11 * * *'
 
   # Allow manual triggering for testing
   workflow_dispatch:
