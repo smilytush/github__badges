@@ -1,0 +1,4 @@
+# Activity Log
+# This file tracks all automatic commits made by the green_commit.ps1 script
+
+Initial setup: $(Get-Date)
