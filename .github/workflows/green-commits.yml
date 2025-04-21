@@ -1,0 +1,55 @@
+name: Green Commits
+
+on:
+  schedule:
+    # Run at 10:00 AM UTC every day
+    - cron: '0 10 * * *'
+  
+  # Allow manual triggering for testing
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Git
+        run: |
+          git config --global user.name "smilytush"
+          git config --global user.email "tushar161@hotmail.com"
+      
+      - name: Check if today is a commit day
+        id: check-day
+        run: |
+          # Get today's date
+          TODAY=$(date +%Y-%m-%d)
+          echo "Today is $TODAY"
+          
+          # Check if today is in the commit schedule
+          if grep -q "$TODAY" commit_schedule.txt; then
+            echo "Today is a commit day!"
+            echo "IS_COMMIT_DAY=true" >> $GITHUB_ENV
+          else
+            echo "Today is not scheduled for a commit."
+            echo "IS_COMMIT_DAY=false" >> $GITHUB_ENV
+          fi
+      
+      - name: Make commit if scheduled
+        if: env.IS_COMMIT_DAY == 'true'
+        run: |
+          # Get today's date
+          TODAY=$(date +%Y-%m-%d)
+          
+          # Update activity log
+          echo "Update from GitHub Actions: $(date)" >> activity.log
+          
+          # Commit and push
+          git add activity.log
+          git commit -m "Auto commit on $TODAY"
+          git push
+        env:
+          # Use the repository token for authentication
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
