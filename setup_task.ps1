@@ -18,8 +18,8 @@ if ($existingTask) {
 # Create a new task
 Write-Host "Creating new scheduled task..."
 
-# Set the execution time (11:30 AM)
-$trigger = New-ScheduledTaskTrigger -Daily -At "11:30 AM"
+# Set the trigger to run at logon
+$trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
 
 # Set the action (run PowerShell script)
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass -File `"$scriptPath`""
@@ -34,7 +34,7 @@ $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -DontStopOnIdleEnd 
 Register-ScheduledTask -TaskName $taskName -Description $taskDescription -Trigger $trigger -Action $action -Principal $principal -Settings $settings
 
 Write-Host "Task '$taskName' created successfully!"
-Write-Host "The script will run daily at 11:30 AM."
+Write-Host "The script will run each time you log in to your computer."
 Write-Host ""
 Write-Host "To verify the task was created correctly:"
 Write-Host "1. Open Task Scheduler (taskschd.msc)"
