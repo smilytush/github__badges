@@ -14,6 +14,7 @@ TABLE OF CONTENTS:
 6. Troubleshooting
 7. File Descriptions
 8. Security Notes
+9. Running When Computer is Off
 
 =======================================================
 1. OVERVIEW
@@ -108,7 +109,7 @@ You can customize this automation by:
 
 4. Adding GitHub Profile Statistics:
    - Add this to your GitHub profile README:
-   
+
    ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=smilytush&show_icons=true&count_private=true&theme=radical)
    [![GitHub Streak](https://streak-stats.demolab.com/?user=smilytush&theme=radical)](https://git.io/streak-stats)
 
@@ -152,6 +153,7 @@ If you encounter issues:
 - setup_github.ps1: Script to connect to GitHub
 - push_to_github.ps1: Script to push to GitHub with a token
 - GREEN-COMMITS-GUIDE.txt: This comprehensive guide
+- .github/workflows/green-commits.yml: GitHub Actions workflow file (optional, for running when computer is off)
 
 =======================================================
 8. SECURITY NOTES
@@ -167,10 +169,98 @@ If you encounter issues:
   4. Generate a new token if needed
 
 =======================================================
+9. RUNNING WHEN COMPUTER IS OFF
+=======================================================
+
+IMPORTANT: The Windows Task Scheduler method will only work when your computer is powered on.
+
+If you want commits to happen even when your laptop is turned off, you have these options:
+
+1. Configure Wake Timers (Limited Solution):
+   - In Task Scheduler, edit the task properties:
+     - Go to the "Conditions" tab
+     - Check "Wake the computer to run this task"
+   - Note: This only works if your computer is in sleep mode, not if it's fully powered off
+
+2. Use GitHub Actions (Cloud-Based Solution):
+   - GitHub Actions can run scheduled workflows directly on GitHub's servers
+   - This would run regardless of your laptop's state
+   - To set this up:
+     a. Create a new Personal Access Token with the "workflow" scope
+     b. Use this token to push the workflow file to GitHub
+     c. The workflow will run automatically on GitHub's servers
+
+To set up GitHub Actions:
+1. Create a file at .github/workflows/green-commits.yml
+2. Add the following content:
+
+```yaml
+name: Green Commits
+
+on:
+  schedule:
+    # Run at 10:00 AM UTC every day
+    - cron: '0 10 * * *'
+
+  # Allow manual triggering for testing
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "smilytush"
+          git config --global user.email "tushar161@hotmail.com"
+
+      - name: Check if today is a commit day
+        id: check-day
+        run: |
+          # Get today's date
+          TODAY=$(date +%Y-%m-%d)
+          echo "Today is $TODAY"
+
+          # Check if today is in the commit schedule
+          if grep -q "$TODAY" commit_schedule.txt; then
+            echo "Today is a commit day!"
+            echo "IS_COMMIT_DAY=true" >> $GITHUB_ENV
+          else
+            echo "Today is not scheduled for a commit."
+            echo "IS_COMMIT_DAY=false" >> $GITHUB_ENV
+          fi
+
+      - name: Make commit if scheduled
+        if: env.IS_COMMIT_DAY == 'true'
+        run: |
+          # Get today's date
+          TODAY=$(date +%Y-%m-%d)
+
+          # Update activity log
+          echo "Update from GitHub Actions: $(date)" >> activity.log
+
+          # Commit and push
+          git add activity.log
+          git commit -m "Auto commit on $TODAY"
+          git push
+        env:
+          # Use the repository token for authentication
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+3. Push this file to your repository using a token with the "workflow" scope
+
+=======================================================
 CONCLUSION
 =======================================================
 
 Your green-commits system is now set up and ready to run automatically. Once you complete the final step of running setup_task_admin.bat as administrator, the system will operate entirely on its own, keeping your GitHub profile consistently active throughout the year.
+
+IMPORTANT: Remember that the Windows Task Scheduler method only works when your computer is powered on. If you want commits to happen even when your laptop is off, consider setting up the GitHub Actions workflow as described in section 9.
 
 No further action is required from you after the initial setup. Your GitHub contribution graph will gradually fill with green squares in a natural-looking pattern.
 
