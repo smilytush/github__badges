@@ -1,0 +1,13 @@
+# Windows system files
+desktop.ini
+Thumbs.db
+ehthumbs.db
+$RECYCLE.BIN/
+
+# PowerShell logs
+*.log1
+*.log2
+*.ps1.log
+
+# Visual Studio Code
+.vscode/
