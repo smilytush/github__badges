@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Commits Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .stat-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 10px;
+            margin-bottom: 10px;
+            flex-basis: 48%;
+        }
+        .stat-box.highlight {
+            border-left-color: #e74c3c;
+        }
+        .stat-box h3 {
+            margin-top: 0;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        .stat-box p {
+            margin-bottom: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #3498db;
+            width: 0%;
+        }
+        .schedule-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .schedule-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        .schedule-list li:last-child {
+            border-bottom: none;
+        }
+        .today {
+            background-color: #e8f4f8;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.green {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .status.yellow {
+            background-color: #f1c40f;
+            color: white;
+        }
+        .status.red {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+        .commit-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .commit-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Green Commits Dashboard</h1>
+        
+        <div class="card">
+            <h2>Overview</h2>
+            <div class="stats">
+                <div class="stat-box">
+                    <h3>Total Scheduled Days</h3>
+                    <p>280</p>
+                </div>
+                <div class="stat-box highlight">
+                    <h3>Commits Made</h3>
+                    <p>1</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Scheduled Days Passed</h3>
+                    <p>1</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Scheduled Days Remaining</h3>
+                    <p>279</p>
+                </div>
+            </div>
+            
+            <h3>Progress</h3>
+            <div class="progress-bar">
+                <div class="progress" style="width: 0.357142857142857%;"></div>
+            </div>
+            <p>1 out of 280 days completed (0.357142857142857%)</p>
+        </div>
+        
+        <div class="card">
+            <h2>Today's Status</h2>
+            <p>Date: <strong>2025-04-23</strong></p>
+            <p>
+                Scheduled for commit today: 
+                <span class="status green">Yes</span>
+            </p>
+            <p>
+                Script has run today: 
+                <span class="status green">Yes</span>
+            </p>
+            <p>Last run date: <strong>2025-04-23</strong></p>
+        </div>
+        
+        <div class="card">
+            <h2>Upcoming Schedule</h2>
+            <ul class="schedule-list">
+                <li><strong>2025-04-26</strong> (in 2 days)</li> <li><strong>2025-04-27</strong> (in 3 days)</li> <li><strong>2025-04-28</strong> (in 4 days)</li> <li><strong>2025-04-30</strong> (in 6 days)</li> <li><strong>2025-05-01</strong> (in 7 days)</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>Recent Activity</h2>
+            <ul class='commit-list'> <li>Update: 04/23/2025 10:07:02</li> </ul>
+        </div>
+        
+        <div class="card">
+            <h2>Task Scheduler Status</h2>
+            <p>
+                Task exists: 
+                <span class="status green">Yes</span>
+            </p>
+            <p>Task state: <strong>Ready</strong></p>
+            <p>Last run time: <strong></strong></p>
+            <p>Next run time: <strong></strong></p>
+        </div>
+        
+        <div class="footer">
+            <p>Generated on 04/23/2025 10:08:33 | Green Commits Automation</p>
+        </div>
+    </div>
+</body>
+</html>
