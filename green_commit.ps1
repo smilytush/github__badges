@@ -93,7 +93,7 @@ if (-not $hasRunToday) {
                 Write-Log "Commit successfully made and pushed to $currentBranch!"
 
                 # Record that the script has run today
-                $todayStr | Out-File -FilePath $lastRunFile -Force
+                $todayStr | Out-File -FilePath $lastRunFile -Encoding utf8 -Force
             }
         }
         catch {
@@ -104,6 +104,6 @@ if (-not $hasRunToday) {
         Write-Log "Today ($todayStr) is not scheduled for a commit."
 
         # Record that the script has run today even if no commit was made
-        $todayStr | Out-File -FilePath $lastRunFile -Force
+        $todayStr | Out-File -FilePath $lastRunFile -Encoding utf8 -Force
     }
 }
