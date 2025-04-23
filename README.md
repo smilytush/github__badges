@@ -10,6 +10,8 @@ This repository contains a PowerShell script that automatically makes commits on
 - Creates a natural-looking contribution pattern
 - Runs silently in the background via Windows Task Scheduler
 - Completely private repository (your activity still counts toward your contribution graph)
+- Interactive dashboard to monitor your progress
+- Tools to visualize and manage your commit schedule
 
 ## How It Works
 
@@ -53,13 +55,25 @@ If you prefer to set things up manually:
 
 5. Set up a daily scheduled task following the instructions in `task_scheduler_setup.md`
 
+## Tools and Utilities
+
+This repository includes several tools to help you manage and monitor your green commits:
+
+- **green-commits.bat**: Easy-to-use menu interface for all tools
+- **show_progress.ps1**: Shows your current progress and upcoming commit days
+- **dashboard.ps1**: Generates an HTML dashboard with visual statistics
+- **update_schedule.ps1**: Updates the commit schedule to include today's date
+- **force_commit.ps1**: Forces a commit regardless of the schedule
+
+To use these tools, simply run `green-commits.bat` and select the desired option from the menu.
+
 ## Customization
 
 You can customize this automation by:
 
 1. **Changing the number of commit days**: Edit `green_commit.ps1` and change the `$daysToPick` variable
 2. **Changing the commit message**: Edit the commit message in `green_commit.ps1`
-3. **Changing the scheduled time**: Edit the trigger time in `setup_task.ps1` or modify the task in Task Scheduler
+3. **Changing the trigger**: The task is set to run at logon, but you can modify this in Task Scheduler
 
 ## GitHub Profile Stats
 
