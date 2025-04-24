@@ -28,3 +28,97 @@
 [2025-04-23 10:13:08] Schedule update complete. Run green_commit.ps1 to test.
 [2025-04-23 22:21:43] Today (2025-04-23) is a commit day. Making a commit...
 [2025-04-23 22:21:45] Current branch: main
+[2025-04-23 22:21:57] Commit successfully made and pushed to main!
+[2025-04-24 00:11:04] Today (2025-04-24) is not scheduled for a commit.
+[2025-04-24 08:34:37] Script has already run today. Skipping execution.
+[2025-04-24 09:18:36] Starting repository cleanup...
+[2025-04-24 09:18:37] The following files will be removed:
+[2025-04-24 09:18:37] - commit_schedule.txt.bak
+[2025-04-24 09:18:37] - create_github_repo.ps1
+[2025-04-24 09:18:37] - create_repo.ps1
+[2025-04-24 09:18:37] - dashboard.ps1
+[2025-04-24 09:18:37] - dashboard_v2.ps1
+[2025-04-24 09:18:37] - force_commit.ps1
+[2025-04-24 09:18:37] - force_commit_v2.ps1
+[2025-04-24 09:18:37] - green-commits-v2.bat
+[2025-04-24 09:18:37] - green-commits.bat
+[2025-04-24 09:18:37] - green_commit.ps1
+[2025-04-24 09:18:37] - last_run.txt
+[2025-04-24 09:18:37] - menu.ps1
+[2025-04-24 09:18:37] - menu_v2.ps1
+[2025-04-24 09:18:37] - push_to_github.bat
+[2025-04-24 09:18:37] - push_to_github.ps1
+[2025-04-24 09:18:37] - setup.bat
+[2025-04-24 09:18:37] - setup_github.bat
+[2025-04-24 09:18:37] - setup_github.ps1
+[2025-04-24 09:18:37] - setup_github_with_pat.ps1
+[2025-04-24 09:18:37] - setup_task.ps1
+[2025-04-24 09:18:37] - setup_task_admin.bat
+[2025-04-24 09:18:37] - setup_task_v2.ps1
+[2025-04-24 09:18:37] - show_progress.ps1
+[2025-04-24 09:18:37] - task_scheduler_setup.md
+[2025-04-24 09:18:37] - test_commit.ps1
+[2025-04-24 09:18:37] - update_schedule.ps1
+[2025-04-24 09:19:14] Removed: commit_schedule.txt.bak
+[2025-04-24 09:19:14] Removed from git: commit_schedule.txt.bak
+[2025-04-24 09:19:14] Removed: create_github_repo.ps1
+[2025-04-24 09:19:14] Removed from git: create_github_repo.ps1
+[2025-04-24 09:19:14] Removed: create_repo.ps1
+[2025-04-24 09:19:15] Removed from git: create_repo.ps1
+[2025-04-24 09:19:15] Removed: dashboard.ps1
+[2025-04-24 09:19:15] Removed from git: dashboard.ps1
+[2025-04-24 09:19:15] Removed: dashboard_v2.ps1
+[2025-04-24 09:19:15] Removed from git: dashboard_v2.ps1
+[2025-04-24 09:19:15] Removed: force_commit.ps1
+[2025-04-24 09:19:15] Removed from git: force_commit.ps1
+[2025-04-24 09:19:15] Removed: force_commit_v2.ps1
+[2025-04-24 09:19:15] Removed from git: force_commit_v2.ps1
+[2025-04-24 09:19:15] Removed: green-commits-v2.bat
+[2025-04-24 09:19:16] Removed from git: green-commits-v2.bat
+[2025-04-24 09:19:16] Removed: green-commits.bat
+[2025-04-24 09:19:16] Removed from git: green-commits.bat
+[2025-04-24 09:19:16] Removed: green_commit.ps1
+[2025-04-24 09:19:16] Removed from git: green_commit.ps1
+[2025-04-24 09:19:16] Removed: last_run.txt
+[2025-04-24 09:19:16] Removed from git: last_run.txt
+[2025-04-24 09:19:16] Removed: menu.ps1
+[2025-04-24 09:19:17] Removed from git: menu.ps1
+[2025-04-24 09:19:17] Removed: menu_v2.ps1
+[2025-04-24 09:19:17] Removed from git: menu_v2.ps1
+[2025-04-24 09:19:17] Removed: push_to_github.bat
+[2025-04-24 09:19:17] Removed from git: push_to_github.bat
+[2025-04-24 09:19:17] Removed: push_to_github.ps1
+[2025-04-24 09:19:18] Removed from git: push_to_github.ps1
+[2025-04-24 09:19:18] Removed: setup.bat
+[2025-04-24 09:19:18] Removed from git: setup.bat
+[2025-04-24 09:19:18] Removed: setup_github.bat
+[2025-04-24 09:19:18] Removed from git: setup_github.bat
+[2025-04-24 09:19:18] Removed: setup_github.ps1
+[2025-04-24 09:19:18] Removed from git: setup_github.ps1
+[2025-04-24 09:19:18] Removed: setup_github_with_pat.ps1
+[2025-04-24 09:19:19] Removed from git: setup_github_with_pat.ps1
+[2025-04-24 09:19:19] Removed: setup_task.ps1
+[2025-04-24 09:19:19] Removed from git: setup_task.ps1
+[2025-04-24 09:19:19] Removed: setup_task_admin.bat
+[2025-04-24 09:19:19] Removed from git: setup_task_admin.bat
+[2025-04-24 09:19:19] Removed: setup_task_v2.ps1
+[2025-04-24 09:19:20] Removed from git: setup_task_v2.ps1
+[2025-04-24 09:19:20] Removed: show_progress.ps1
+[2025-04-24 09:19:20] Removed from git: show_progress.ps1
+[2025-04-24 09:19:20] Removed: task_scheduler_setup.md
+[2025-04-24 09:19:20] Removed from git: task_scheduler_setup.md
+[2025-04-24 09:19:20] Removed: test_commit.ps1
+[2025-04-24 09:19:20] Removed from git: test_commit.ps1
+[2025-04-24 09:19:21] Removed from git: update_schedule.ps1
+[2025-04-24 09:19:28] Cleanup completed and changes pushed to GitHub.
+[2025-04-24 09:24:03] Backed up existing schedule to J:\green-commits\commit_schedule.txt.bak
+[2025-04-24 09:24:03] Generating new commit schedule starting from today: 2025-04-24
+[2025-04-24 09:24:03] Adding today to the schedule for testing
+[2025-04-24 09:24:04] Created new commit schedule with 280 days
+[2025-04-24 09:24:04] First scheduled date: 2025-04-24
+[2025-04-24 09:24:04] Schedule includes today: True
+[2025-04-24 09:24:04] Schedule update complete. Run green_commit.ps1 to test.
+[2025-04-24 09:24:19] Today (2025-04-24) is a commit day. Making a commit for morning session...
+[2025-04-24 09:24:19] Current branch: main
+[2025-04-24 09:24:22] Pulled latest changes from remote
+[2025-04-24 09:24:22] Updated code snippets in Python, Solidity, and TypeScript
