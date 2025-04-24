@@ -124,6 +124,28 @@
             padding: 8px 0;
             border-bottom: 1px solid #ecf0f1;
         }
+        .file-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .file-list li {
+            padding: 5px 10px;
+            margin-bottom: 5px;
+            background-color: #f8f9fa;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .session-box {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .session {
+            flex-basis: 48%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
     </style>
 </head>
 <body>
@@ -138,65 +160,100 @@
                     <p>280</p>
                 </div>
                 <div class="stat-box highlight">
-                    <h3>Commits Made</h3>
+                    <h3>Total Commits Made</h3>
+                    <p>3</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Morning Commits</h3>
                     <p>1</p>
                 </div>
                 <div class="stat-box">
-                    <h3>Scheduled Days Passed</h3>
-                    <p>1</p>
-                </div>
-                <div class="stat-box">
-                    <h3>Scheduled Days Remaining</h3>
-                    <p>279</p>
+                    <h3>Afternoon Commits</h3>
+                    <p>0</p>
                 </div>
             </div>
             
             <h3>Progress</h3>
             <div class="progress-bar">
-                <div class="progress" style="width: 0.357142857142857%;"></div>
+                <div class="progress" style="width: 0.535714285714286%;"></div>
             </div>
-            <p>1 out of 280 days completed (0.357142857142857%)</p>
+            <p>3 out of 560 potential commits completed (0.535714285714286%)</p>
         </div>
         
         <div class="card">
             <h2>Today's Status</h2>
-            <p>Date: <strong>2025-04-23</strong></p>
+            <p>Date: <strong>2025-04-24</strong></p>
             <p>
                 Scheduled for commit today: 
                 <span class="status green">Yes</span>
             </p>
-            <p>
-                Script has run today: 
-                <span class="status green">Yes</span>
-            </p>
-            <p>Last run date: <strong>2025-04-23</strong></p>
+            
+            <div class="session-box">
+                <div class="session">
+                    <h3>Morning Session</h3>
+                    <p>
+                        Script has run: 
+                        <span class="status green">Yes</span>
+                    </p>
+                </div>
+                <div class="session">
+                    <h3>Afternoon Session</h3>
+                    <p>
+                        Script has run: 
+                        <span class="status yellow">No</span>
+                    </p>
+                </div>
+            </div>
+            
+            <p>Last run info: <strong>2025-04-24::morning</strong></p>
         </div>
         
         <div class="card">
             <h2>Upcoming Schedule</h2>
             <ul class="schedule-list">
-                <li><strong>2025-04-26</strong> (in 2 days)</li> <li><strong>2025-04-27</strong> (in 3 days)</li> <li><strong>2025-04-28</strong> (in 4 days)</li> <li><strong>2025-04-30</strong> (in 6 days)</li> <li><strong>2025-05-01</strong> (in 7 days)</li>
+                <li><strong>2025-04-25</strong> (in 0 days) - 2 commits scheduled</li> <li><strong>2025-04-26</strong> (in 1 days) - 2 commits scheduled</li> <li><strong>2025-04-27</strong> (in 2 days) - 2 commits scheduled</li> <li><strong>2025-04-28</strong> (in 3 days) - 2 commits scheduled</li> <li><strong>2025-04-29</strong> (in 4 days) - 2 commits scheduled</li>
             </ul>
         </div>
         
         <div class="card">
             <h2>Recent Activity</h2>
-            <ul class='commit-list'> <li>Update: 04/23/2025 10:07:02</li> </ul>
+            <ul class='commit-list'> <li>Update: 04/23/2025 10:07:02</li> <li>Update: 04/23/2025 22:21:43</li> <li>Update (morning): 04/24/2025 09:24:22</li> </ul>
+        </div>
+        
+        <div class="card">
+            <h2>Code Snippets</h2>
+            <p>The following code snippet files are being updated with each commit:</p> <ul class='file-list'> <li>app.ts</li> <li>example.py</li> <li>SimpleContract.sol</li> </ul>
         </div>
         
         <div class="card">
             <h2>Task Scheduler Status</h2>
-            <p>
-                Task exists: 
-                <span class="status green">Yes</span>
-            </p>
-            <p>Task state: <strong>Ready</strong></p>
-            <p>Last run time: <strong></strong></p>
-            <p>Next run time: <strong></strong></p>
+            
+            <div class="session-box">
+                <div class="session">
+                    <h3>Morning Task (9:00 AM)</h3>
+                    <p>
+                        Task exists: 
+                        <span class="status red">No</span>
+                    </p>
+                    <p>State: <strong>Unknown</strong></p>
+                    <p>Last run: <strong>Never</strong></p>
+                    <p>Next run: <strong>Unknown</strong></p>
+                </div>
+                <div class="session">
+                    <h3>Afternoon Task (3:00 PM)</h3>
+                    <p>
+                        Task exists: 
+                        <span class="status red">No</span>
+                    </p>
+                    <p>State: <strong>Unknown</strong></p>
+                    <p>Last run: <strong>Never</strong></p>
+                    <p>Next run: <strong>Unknown</strong></p>
+                </div>
+            </div>
         </div>
         
         <div class="footer">
-            <p>Generated on 04/23/2025 10:12:32 | Green Commits Automation</p>
+            <p>Generated on 04/24/2025 09:25:32 | Green Commits Automation</p>
         </div>
     </div>
 </body>
