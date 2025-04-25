@@ -32,3 +32,4 @@ manager.addUser({ id: 1, name: 'John Doe', email: 'john@example.com', isActive: 
 const activeUsers = manager.getActiveUsers();
 console.log(activeUsers);
 // Updated on 2025-04-25 08:06:15 - Session: morning
+// Updated on 2025-04-25 21:55:58 - Session: afternoon
