@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Commits Dashboard</title>
+    <title>GitHub Workflow Dashboard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -146,11 +146,36 @@
             border-radius: 5px;
             background-color: #f8f9fa;
         }
+        .workflow-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .workflow-box {
+            flex-basis: 31%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .workflow-box h3 {
+            margin-top: 0;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        .workflow-box p {
+            margin-bottom: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Green Commits Dashboard</h1>
+        <h1>GitHub Workflow Dashboard</h1>
         
         <div class="card">
             <h2>Overview</h2>
@@ -160,44 +185,75 @@
                     <p>280</p>
                 </div>
                 <div class="stat-box highlight">
-                    <h3>Total Commits Made</h3>
-                    <p>3</p>
+                    <h3>Total Activities</h3>
+                    <p>8</p>
                 </div>
                 <div class="stat-box">
                     <h3>Morning Commits</h3>
-                    <p>1</p>
+                    <p>3</p>
                 </div>
                 <div class="stat-box">
-                    <h3>Afternoon Commits</h3>
+                    <h3>Afternoon Workflows</h3>
                     <p>0</p>
                 </div>
             </div>
             
             <h3>Progress</h3>
             <div class="progress-bar">
-                <div class="progress" style="width: 0.535714285714286%;"></div>
+                <div class="progress" style="width: 1.42857142857143%;"></div>
             </div>
-            <p>3 out of 560 potential commits completed (0.535714285714286%)</p>
+            <p>8 out of 560 potential activities completed (1.42857142857143%)</p>
+        </div>
+        
+        <div class="card">
+            <h2>GitHub Workflow Statistics</h2>
+            <div class="workflow-stats">
+                <div class="workflow-box">
+                    <h3>Issues</h3>
+                    <p>0</p>
+                    <div>Open: 0 | Closed: 0</div>
+                </div>
+                <div class="workflow-box">
+                    <h3>Pull Requests</h3>
+                    <p>0</p>
+                    <div>Open: 0 | Merged: 0</div>
+                </div>
+                <div class="workflow-box">
+                    <h3>Code Reviews</h3>
+                    <p>0</p>
+                </div>
+            </div>
+            
+            <div class="session-box">
+                <div class="session">
+                    <h3>Latest Issue</h3>
+                    <p>None</p>
+                </div>
+                <div class="session">
+                    <h3>Latest Pull Request</h3>
+                    <p>None</p>
+                </div>
+            </div>
         </div>
         
         <div class="card">
             <h2>Today's Status</h2>
-            <p>Date: <strong>2025-04-24</strong></p>
+            <p>Date: <strong>2025-04-27</strong></p>
             <p>
-                Scheduled for commit today: 
+                Scheduled for activity today: 
                 <span class="status green">Yes</span>
             </p>
             
             <div class="session-box">
                 <div class="session">
-                    <h3>Morning Session</h3>
+                    <h3>Morning Session (Commits)</h3>
                     <p>
                         Script has run: 
-                        <span class="status green">Yes</span>
+                        <span class="status yellow">No</span>
                     </p>
                 </div>
                 <div class="session">
-                    <h3>Afternoon Session</h3>
+                    <h3>Afternoon Session (Workflow)</h3>
                     <p>
                         Script has run: 
                         <span class="status yellow">No</span>
@@ -205,24 +261,24 @@
                 </div>
             </div>
             
-            <p>Last run info: <strong>2025-04-24::morning</strong></p>
+            <p>Last run info: <strong>2025-04-26::afternoon</strong></p>
         </div>
         
         <div class="card">
             <h2>Upcoming Schedule</h2>
             <ul class="schedule-list">
-                <li><strong>2025-04-25</strong> (in 0 days) - 2 commits scheduled</li> <li><strong>2025-04-26</strong> (in 1 days) - 2 commits scheduled</li> <li><strong>2025-04-27</strong> (in 2 days) - 2 commits scheduled</li> <li><strong>2025-04-28</strong> (in 3 days) - 2 commits scheduled</li> <li><strong>2025-04-29</strong> (in 4 days) - 2 commits scheduled</li>
+                <li><strong>2025-04-28</strong> (in 0 days) - AM: Commits, PM: Workflow</li> <li><strong>2025-04-29</strong> (in 1 days) - AM: Commits, PM: Workflow</li> <li><strong>2025-04-30</strong> (in 2 days) - AM: Commits, PM: Workflow</li> <li><strong>2025-05-01</strong> (in 3 days) - AM: Commits, PM: Workflow</li> <li><strong>2025-05-02</strong> (in 4 days) - AM: Commits, PM: Workflow</li>
             </ul>
         </div>
         
         <div class="card">
             <h2>Recent Activity</h2>
-            <ul class='commit-list'> <li>Update: 04/23/2025 10:07:02</li> <li>Update: 04/23/2025 22:21:43</li> <li>Update (morning): 04/24/2025 09:24:22</li> </ul>
+            <ul class='commit-list'> <li>Update (morning): 04/24/2025 09:24:22</li> <li>Update (morning): 04/25/2025 08:06:15</li> <li>Update (afternoon): 04/25/2025 21:55:58</li> <li>Update (morning): 04/26/2025 10:21:34</li> <li>Update (afternoon): 04/26/2025 21:51:19</li> </ul>
         </div>
         
         <div class="card">
             <h2>Code Snippets</h2>
-            <p>The following code snippet files are being updated with each commit:</p> <ul class='file-list'> <li>app.ts</li> <li>example.py</li> <li>SimpleContract.sol</li> </ul>
+            <p>The following code snippet files are being updated with each activity:</p> <ul class='file-list'> <li>app.ts</li> <li>example.py</li> <li>SimpleContract.sol</li> </ul>
         </div>
         
         <div class="card">
@@ -253,7 +309,7 @@
         </div>
         
         <div class="footer">
-            <p>Generated on 04/24/2025 09:25:32 | Green Commits Automation</p>
+            <p>Generated on 04/27/2025 00:50:42 | GitHub Workflow Automation</p>
         </div>
     </div>
 </body>
