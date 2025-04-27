@@ -32,18 +32,19 @@ function Get-ColorForIntensity {
 
 function Show-Menu {
     Clear-Host
-    Write-Host "========= GREEN GITHUB WORKFLOW (4 LEVELS) =========" -ForegroundColor Green
+    Write-Host "========= GREEN GITHUB WORKFLOW (DARK GREEN) =========" -ForegroundColor Green
     Write-Host "1: Show Dashboard" -ForegroundColor Green
     Write-Host "2: Run Morning Workflow (Simple Commits)" -ForegroundColor Yellow
     Write-Host "3: Run Afternoon Workflow (PRs, Issues, Reviews)" -ForegroundColor Yellow
     Write-Host "4: Optimize for Maximum Green (4 Levels Only)" -ForegroundColor Cyan
-    Write-Host "5: View Commit Schedule" -ForegroundColor Green
-    Write-Host "6: View Issues and Pull Requests" -ForegroundColor Green
-    Write-Host "7: Setup Task Scheduler (Twice Daily)" -ForegroundColor Yellow
-    Write-Host "8: Open GitHub Repository" -ForegroundColor Green
-    Write-Host "9: Clean Up Repository" -ForegroundColor Red
+    Write-Host "5: Optimize for Dark Green (Twice Weekly)" -ForegroundColor Green
+    Write-Host "6: View Commit Schedule" -ForegroundColor Green
+    Write-Host "7: View Issues and Pull Requests" -ForegroundColor Green
+    Write-Host "8: Setup Task Scheduler (Twice Daily)" -ForegroundColor Yellow
+    Write-Host "9: Open GitHub Repository" -ForegroundColor Green
+    Write-Host "0: Clean Up Repository" -ForegroundColor Red
     Write-Host "Q: Quit" -ForegroundColor Red
-    Write-Host "===================================================" -ForegroundColor Green
+    Write-Host "====================================================" -ForegroundColor Green
 }
 
 function Open-GitHub {
@@ -360,18 +361,24 @@ do {
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         '5' {
+            Write-Host "Optimizing for dark green (twice weekly)..." -ForegroundColor Green
+            & .\green_optimizer_dark.ps1
+            Write-Host "`nPress any key to continue..."
+            $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }
+        '6' {
             Write-Host "Viewing commit schedule..." -ForegroundColor Cyan
             View-CommitSchedule
             Write-Host "`nPress any key to continue..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
-        '6' {
+        '7' {
             Write-Host "Viewing GitHub activity..." -ForegroundColor Cyan
             View-GitHubActivity
             Write-Host "`nPress any key to continue..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
-        '7' {
+        '8' {
             Write-Host "Setting up Task Scheduler for twice daily workflow..." -ForegroundColor Yellow
             Write-Host "This requires administrator privileges." -ForegroundColor Red
             $runAsAdmin = Read-Host "Run as administrator? (Y/N)"
@@ -381,12 +388,12 @@ do {
             Write-Host "`nPress any key to continue..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
-        '8' {
+        '9' {
             Open-GitHub
             Write-Host "`nPress any key to continue..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
-        '9' {
+        '0' {
             Write-Host "Cleaning up repository..." -ForegroundColor Red
             Clean-Repository
             Write-Host "`nPress any key to continue..."
