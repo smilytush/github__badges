@@ -1,8 +1,8 @@
 @echo off
-echo Green GitHub Workflow Automation (DARK GREEN)
-echo =========================================
+echo Green GitHub Workflow Automation (NATURAL PATTERN)
+echo ==============================================
 echo.
-echo Starting green menu with dark green focus...
+echo Starting green menu with natural random pattern...
 echo.
 powershell -ExecutionPolicy Bypass -File "%~dp0green_menu_fixed.ps1"
 if %ERRORLEVEL% NEQ 0 (

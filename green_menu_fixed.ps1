@@ -32,17 +32,18 @@ function Get-ColorForIntensity {
 
 function Show-Menu {
     Clear-Host
-    Write-Host "========= GREEN GITHUB WORKFLOW (DARK GREEN) =========" -ForegroundColor Green
+    Write-Host "========= GREEN GITHUB WORKFLOW (NATURAL) =========" -ForegroundColor Green
     Write-Host "1: Show Dashboard" -ForegroundColor Green
     Write-Host "2: Run Morning Workflow (Simple Commits)" -ForegroundColor Yellow
     Write-Host "3: Run Afternoon Workflow (PRs, Issues, Reviews)" -ForegroundColor Yellow
-    Write-Host "4: Optimize for Maximum Green (4 Levels Only)" -ForegroundColor Cyan
+    Write-Host "4: Optimize for Natural Pattern (Random)" -ForegroundColor Cyan
     Write-Host "5: Optimize for Dark Green (Twice Weekly)" -ForegroundColor Green
     Write-Host "6: View Commit Schedule" -ForegroundColor Green
     Write-Host "7: View Issues and Pull Requests" -ForegroundColor Green
-    Write-Host "8: Setup Task Scheduler (Twice Daily)" -ForegroundColor Yellow
-    Write-Host "9: Open GitHub Repository" -ForegroundColor Green
+    Write-Host "8: Setup Task Scheduler (All Options)" -ForegroundColor Yellow
+    Write-Host "9: Setup for New Machine" -ForegroundColor Magenta
     Write-Host "0: Clean Up Repository" -ForegroundColor Red
+    Write-Host "O: Open GitHub Repository" -ForegroundColor Green
     Write-Host "Q: Quit" -ForegroundColor Red
     Write-Host "====================================================" -ForegroundColor Green
 }
@@ -355,8 +356,8 @@ do {
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         '4' {
-            Write-Host "Optimizing for maximum green (4 levels)..." -ForegroundColor Cyan
-            & .\green_optimizer_4levels.ps1
+            Write-Host "Optimizing for natural pattern (random)..." -ForegroundColor Cyan
+            & .\green_optimizer_natural.ps1
             Write-Host "`nPress any key to continue..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
@@ -379,16 +380,52 @@ do {
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         '8' {
-            Write-Host "Setting up Task Scheduler for twice daily workflow..." -ForegroundColor Yellow
+            Write-Host "Setting up Task Scheduler (All Options)..." -ForegroundColor Yellow
             Write-Host "This requires administrator privileges." -ForegroundColor Red
+            Write-Host "1: Setup Daily Tasks (9 AM and 3 PM)" -ForegroundColor Cyan
+            Write-Host "2: Setup Startup and Logon Tasks" -ForegroundColor Cyan
+            Write-Host "3: Setup All Tasks (Recommended)" -ForegroundColor Green
+            $taskChoice = Read-Host "Enter your choice (1-3)"
+
             $runAsAdmin = Read-Host "Run as administrator? (Y/N)"
             if ($runAsAdmin -eq 'Y' -or $runAsAdmin -eq 'y') {
-                Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PWD\setup_task_green.ps1`"" -Verb RunAs
+                switch ($taskChoice) {
+                    '1' {
+                        Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PWD\setup_task_green.ps1`"" -Verb RunAs
+                    }
+                    '2' {
+                        Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PWD\setup_task_startup.ps1`"" -Verb RunAs
+                    }
+                    '3' {
+                        Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PWD\setup_task_green.ps1`"" -Verb RunAs
+                        Start-Sleep -Seconds 2
+                        Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PWD\setup_task_startup.ps1`"" -Verb RunAs
+                    }
+                    default {
+                        Write-Host "Invalid choice. No tasks were set up." -ForegroundColor Red
+                    }
+                }
             }
             Write-Host "`nPress any key to continue..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         '9' {
+            Write-Host "Setting up for a new machine..." -ForegroundColor Magenta
+            Write-Host "This will help you set up the system on a different machine." -ForegroundColor Cyan
+            Write-Host "Instructions:" -ForegroundColor Yellow
+            Write-Host "1. Copy setup_new_machine.ps1 to the new machine" -ForegroundColor White
+            Write-Host "2. Run it with administrator privileges" -ForegroundColor White
+            Write-Host "3. Follow the prompts to complete the setup" -ForegroundColor White
+
+            $openFile = Read-Host "Open the setup script in File Explorer? (Y/N)"
+            if ($openFile -eq 'Y' -or $openFile -eq 'y') {
+                explorer.exe /select, "$PWD\setup_new_machine.ps1"
+            }
+
+            Write-Host "`nPress any key to continue..."
+            $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }
+        'o' {
             Open-GitHub
             Write-Host "`nPress any key to continue..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
