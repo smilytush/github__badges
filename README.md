@@ -1,21 +1,39 @@
-# Green Commits
+# GitHub Workflow Automation
 
-A simple automation to keep your GitHub contribution graph active.
+A comprehensive automation system to keep your GitHub profile active with realistic development activities.
 
-This repository contains a PowerShell script that automatically makes commits on randomly selected days throughout the year, creating a natural-looking activity pattern on your GitHub profile.
+This repository contains PowerShell scripts that automatically generate commits, issues, pull requests, and code reviews on randomly selected days throughout the year, creating a natural-looking activity pattern on your GitHub profile.
 
 ## Features
 
-- Automatically commits on 280 random days out of 365
-- Creates a natural-looking contribution pattern
-- Runs silently in the background via Windows Task Scheduler
+- Automatically runs on 280 random days out of 365
+- Creates a natural-looking contribution pattern with varied activities
+- Runs twice daily via Windows Task Scheduler:
+  - **Morning**: Simple commits with code changes
+  - **Afternoon**: Full GitHub workflow (issues, PRs, code reviews)
+- Updates code in multiple languages (Python, Solidity, TypeScript)
 - Completely private repository (your activity still counts toward your contribution graph)
 - Interactive dashboard to monitor your progress
-- Tools to visualize and manage your commit schedule
+- Tools to visualize and manage your GitHub workflow
 
 ## How It Works
 
-The script generates a schedule of 280 random days and saves it to a file. Each day, when the scheduled task runs, the script checks if the current day is in the schedule. If it is, it makes a simple commit and pushes it to GitHub.
+The system generates a schedule of 280 random days and saves it to a file. Each day, when the scheduled tasks run:
+
+1. **Morning Session (9:00 AM)**:
+   - Pulls the latest changes from GitHub
+   - Updates code snippets in Python, Solidity, and TypeScript
+   - Makes a simple commit and pushes it to GitHub
+
+2. **Afternoon Session (3:00 PM)**:
+   - Creates a new branch for a feature
+   - Creates an issue describing the feature
+   - Updates code snippets with feature-specific code
+   - Creates a pull request referencing the issue
+   - Performs a code review on the pull request
+   - Merges the pull request
+   - Closes the issue
+   - Pushes all changes to GitHub
 
 ## Setup
 
@@ -24,56 +42,55 @@ You can set up this automation in just a few minutes using the provided scripts:
 ### Automatic Setup
 
 1. Clone this repository to your local machine
-2. Run `setup_github.ps1` to connect to GitHub (requires Git to be configured)
-3. Run `setup_task.ps1` with administrator privileges to set up the Windows Task Scheduler task
+2. Run `github_workflow.bat` to open the menu
+3. Select option 7 to set up the Task Scheduler tasks
 
 ```powershell
 # Clone the repository (if you haven't already)
 git clone https://github.com/smilytush/green-commits.git
 cd green-commits
 
-# Connect to GitHub
-.\setup_github.ps1
-
-# Set up the scheduled task (run as administrator)
-Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File .\setup_task.ps1" -Verb RunAs
+# Run the menu
+.\github_workflow.bat
 ```
-
-### Manual Setup
-
-If you prefer to set things up manually:
-
-1. Clone this repository
-2. Run `green_commit.ps1` manually once to generate the commit schedule
-3. Create a GitHub repository named "green-commits"
-4. Connect your local repository to GitHub:
-
-   ```bash
-   git remote add origin https://github.com/smilytush/green-commits.git
-   git push -u origin master
-   ```
-
-5. Set up a daily scheduled task following the instructions in `task_scheduler_setup.md`
 
 ## Tools and Utilities
 
-This repository includes several tools to help you manage and monitor your green commits:
+This repository includes several tools to help you manage and monitor your GitHub workflow:
 
-- **green-commits.bat**: Easy-to-use menu interface for all tools
-- **show_progress.ps1**: Shows your current progress and upcoming commit days
-- **dashboard.ps1**: Generates an HTML dashboard with visual statistics
-- **update_schedule.ps1**: Updates the commit schedule to include today's date
-- **force_commit.ps1**: Forces a commit regardless of the schedule
+- **github_workflow.bat**: Easy-to-use menu interface for all tools
+- **enhanced_dashboard.ps1**: Generates an HTML dashboard with visual statistics
+- **enhanced_workflow_final.ps1**: The main script that handles all GitHub activities
+- **enhanced_menu_fixed.ps1**: The menu interface for managing the workflow
 
-To use these tools, simply run `green-commits.bat` and select the desired option from the menu.
+To use these tools, simply run `github_workflow.bat` and select the desired option from the menu.
+
+## Dashboard
+
+The dashboard provides a comprehensive view of your GitHub workflow activities:
+
+- Total activities performed
+- Issues created and closed
+- Pull requests created and merged
+- Code reviews performed
+- Upcoming scheduled days
+- Code snippets being updated
+- Task Scheduler status
 
 ## Customization
 
 You can customize this automation by:
 
-1. **Changing the number of commit days**: Edit `green_commit.ps1` and change the `$daysToPick` variable
-2. **Changing the commit message**: Edit the commit message in `green_commit.ps1`
-3. **Changing the trigger**: The task is set to run at logon, but you can modify this in Task Scheduler
+1. **Changing the number of activity days**: Edit `enhanced_workflow_final.ps1` and change the `$daysToPick` variable
+2. **Modifying the code snippets**: Edit the code snippet templates in `enhanced_workflow_final.ps1`
+3. **Changing the scheduled times**: Edit the trigger times in `setup_task_enhanced.ps1`
+
+## Important Notes
+
+- This automation is designed to run on your local machine
+- The Task Scheduler tasks will only run when your computer is powered on
+- All activities are performed in a private repository, but they still count toward your public GitHub contribution graph
+- The system is designed to create a natural-looking activity pattern, not to spam your GitHub profile
 
 ## GitHub Profile Stats
 
