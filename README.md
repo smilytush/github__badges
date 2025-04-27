@@ -1,100 +1,132 @@
-# GitHub Workflow Automation
+# GitHub Workflow Automation (Natural Pattern)
 
-A comprehensive automation system to keep your GitHub profile active with realistic development activities.
+A comprehensive automation system to keep your GitHub profile active with realistic development activities using a natural random pattern.
 
-This repository contains PowerShell scripts that automatically generate commits, issues, pull requests, and code reviews on randomly selected days throughout the year, creating a natural-looking activity pattern on your GitHub profile.
+This repository contains PowerShell scripts that automatically generate commits, issues, pull requests, and code reviews on randomly selected days throughout the year, creating a natural-looking activity pattern on your GitHub profile with strategically placed dark green contributions.
 
 ## Features
 
-- Automatically runs on 280 random days out of 365
-- Creates a natural-looking contribution pattern with varied activities
-- Runs twice daily via Windows Task Scheduler:
+- **Natural Random Pattern**: Creates a completely natural-looking contribution graph
+- **Runs Whenever Machine is On**: Automatically runs at startup, logon, and scheduled times
+- **Multi-Machine Support**: Easy setup on multiple computers with automatic configuration
+- **Dark Green Focus**: Creates dark green contributions (level 4-5) twice per week on random days
+- **4-Level Intensity System**: Uses only medium to dark green levels (2-5) for better visual impact
+- **Increased Coverage**: Automatically runs on 320 random days out of 365
+- **Twice Daily Activities**:
   - **Morning**: Simple commits with code changes
   - **Afternoon**: Full GitHub workflow (issues, PRs, code reviews)
-- Updates code in multiple languages (Python, Solidity, TypeScript)
-- Completely private repository (your activity still counts toward your contribution graph)
-- Interactive dashboard to monitor your progress
-- Tools to visualize and manage your GitHub workflow
+- **Weekend Contributions**: Includes weekend days in the random pattern
+- **Multi-Language Updates**: Updates code in Python, Solidity, and TypeScript
+- **Interactive Dashboard**: Monitor your progress with visual statistics
+- **Comprehensive Tools**: Visualize and manage your GitHub workflow
 
 ## How It Works
 
-The system generates a schedule of 280 random days and saves it to a file. Each day, when the scheduled tasks run:
+The system generates a natural random schedule of 320 days and saves it to a file. The automation runs:
 
-1. **Morning Session (9:00 AM)**:
+1. **When Your Computer Starts**:
+   - Automatically runs when your machine boots up
+   - Checks if today is a scheduled day and runs the appropriate workflow
+
+2. **When You Log In**:
+   - Runs when you log into your Windows account
+   - Performs the afternoon workflow with full GitHub activities
+
+3. **Morning Session (9:00 AM)**:
    - Pulls the latest changes from GitHub
    - Updates code snippets in Python, Solidity, and TypeScript
-   - Makes a simple commit and pushes it to GitHub
+   - Makes multiple commits based on the day's intensity level (2-5)
+   - Pushes changes to GitHub
 
-2. **Afternoon Session (3:00 PM)**:
+4. **Afternoon Session (3:00 PM)**:
    - Creates a new branch for a feature
    - Creates an issue describing the feature
    - Updates code snippets with feature-specific code
    - Creates a pull request referencing the issue
    - Performs a code review on the pull request
-   - Merges the pull request
-   - Closes the issue
+   - Merges the pull request and closes the issue
    - Pushes all changes to GitHub
 
 ## Setup
 
 You can set up this automation in just a few minutes using the provided scripts:
 
-### Automatic Setup
+### On Your Primary Machine
 
 1. Clone this repository to your local machine
-2. Run `github_workflow.bat` to open the menu
-3. Select option 7 to set up the Task Scheduler tasks
+2. Run `green_github.bat` to open the menu
+3. Select option 4 to optimize for a natural random pattern
+4. Select option 8 to set up all automation tasks (startup, logon, and scheduled)
 
 ```powershell
-# Clone the repository (if you haven't already)
+# Clone the repository
 git clone https://github.com/smilytush/green-commits.git
 cd green-commits
 
 # Run the menu
-.\github_workflow.bat
+.\green_github.bat
 ```
+
+### On Additional Machines
+
+1. On your primary machine, select option 9 from the menu
+2. Copy the `setup_new_machine.ps1` script to your additional machine
+3. Run the script with administrator privileges
+4. Follow the prompts to complete the setup
+
+## Optimization Options
+
+The system offers multiple optimization strategies:
+
+1. **Natural Random Pattern (Option 4)**: Creates a completely natural-looking pattern with random intensity levels and two dark green days per week on random days (including weekends)
+
+2. **Dark Green Focus (Option 5)**: Creates a pattern with dark green contributions twice per week on specific days (Tuesday and Thursday)
+
+3. **4-Level System**: Both options use only 4 intensity levels (2-5), removing the lightest green (level 1) for a more impactful contribution graph
 
 ## Tools and Utilities
 
 This repository includes several tools to help you manage and monitor your GitHub workflow:
 
-- **github_workflow.bat**: Easy-to-use menu interface for all tools
+- **green_github.bat**: Easy-to-use menu interface for all tools
 - **enhanced_dashboard.ps1**: Generates an HTML dashboard with visual statistics
-- **enhanced_workflow_final.ps1**: The main script that handles all GitHub activities
-- **enhanced_menu_fixed.ps1**: The menu interface for managing the workflow
-
-To use these tools, simply run `github_workflow.bat` and select the desired option from the menu.
+- **green_workflow_4levels.ps1**: The main script that handles all GitHub activities
+- **green_menu_fixed.ps1**: The menu interface for managing the workflow
+- **green_optimizer_natural.ps1**: Creates a natural random pattern
+- **setup_new_machine.ps1**: Sets up the system on additional machines
 
 ## Dashboard
 
 The dashboard provides a comprehensive view of your GitHub workflow activities:
 
-- Total activities performed
+- Total activities performed with intensity distribution
 - Issues created and closed
 - Pull requests created and merged
 - Code reviews performed
-- Upcoming scheduled days
+- Upcoming scheduled days with intensity levels
 - Code snippets being updated
-- Task Scheduler status
+- Task Scheduler status for all automation tasks
 
-## Customization
+## Automation Tasks
 
-You can customize this automation by:
+The system sets up multiple automation tasks to ensure your GitHub activity continues regardless of your schedule:
 
-1. **Changing the number of activity days**: Edit `enhanced_workflow_final.ps1` and change the `$daysToPick` variable
-2. **Modifying the code snippets**: Edit the code snippet templates in `enhanced_workflow_final.ps1`
-3. **Changing the scheduled times**: Edit the trigger times in `setup_task_enhanced.ps1`
+1. **Startup Task**: Runs when your computer starts up (morning session)
+2. **Logon Task**: Runs when you log into Windows (afternoon session)
+3. **Daily Morning Task**: Runs at 9:00 AM every day
+4. **Daily Afternoon Task**: Runs at 3:00 PM every day
 
 ## Important Notes
 
-- This automation is designed to run on your local machine
-- The Task Scheduler tasks will only run when your computer is powered on
+- The system runs automatically whenever your machine is on
 - All activities are performed in a private repository, but they still count toward your public GitHub contribution graph
-- The system is designed to create a natural-looking activity pattern, not to spam your GitHub profile
+- The system is designed to create a natural-looking activity pattern
+- Dark green contributions (levels 4-5) appear twice per week on random days
+- The system works across multiple machines with easy setup
 
 ## GitHub Profile Stats
 
-To showcase your GitHub activity on your profile, add these to your GitHub profile README:
+To showcase your enhanced GitHub activity on your profile, add these to your GitHub profile README:
 
 ```markdown
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=smilytush&show_icons=true&count_private=true&theme=radical)
