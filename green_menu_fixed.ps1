@@ -5,9 +5,8 @@ function Get-GreenLevelDescription {
     param(
         [int]$Level
     )
-    
+
     switch ($Level) {
-        1 { "Light green" }
         2 { "Medium-light green" }
         3 { "Medium green" }
         4 { "Medium-dark green" }
@@ -21,9 +20,8 @@ function Get-ColorForIntensity {
     param(
         [int]$Level
     )
-    
+
     switch ($Level) {
-        1 { "Gray" }
         2 { "White" }
         3 { "Cyan" }
         4 { "Yellow" }
@@ -34,18 +32,18 @@ function Get-ColorForIntensity {
 
 function Show-Menu {
     Clear-Host
-    Write-Host "============= GREEN GITHUB WORKFLOW =============" -ForegroundColor Green
+    Write-Host "========= GREEN GITHUB WORKFLOW (4 LEVELS) =========" -ForegroundColor Green
     Write-Host "1: Show Dashboard" -ForegroundColor Green
     Write-Host "2: Run Morning Workflow (Simple Commits)" -ForegroundColor Yellow
     Write-Host "3: Run Afternoon Workflow (PRs, Issues, Reviews)" -ForegroundColor Yellow
-    Write-Host "4: Optimize for Maximum Green" -ForegroundColor Cyan
+    Write-Host "4: Optimize for Maximum Green (4 Levels Only)" -ForegroundColor Cyan
     Write-Host "5: View Commit Schedule" -ForegroundColor Green
     Write-Host "6: View Issues and Pull Requests" -ForegroundColor Green
     Write-Host "7: Setup Task Scheduler (Twice Daily)" -ForegroundColor Yellow
     Write-Host "8: Open GitHub Repository" -ForegroundColor Green
     Write-Host "9: Clean Up Repository" -ForegroundColor Red
     Write-Host "Q: Quit" -ForegroundColor Red
-    Write-Host "=================================================" -ForegroundColor Green
+    Write-Host "===================================================" -ForegroundColor Green
 }
 
 function Open-GitHub {
@@ -57,20 +55,20 @@ function Open-GitHub {
 function View-CommitSchedule {
     $scheduleFile = ".\commit_schedule.txt"
     $intensityFile = ".\commit_intensity.txt"
-    
+
     if (-not (Test-Path $scheduleFile)) {
         Write-Host "Commit schedule not found. Run the green optimizer first." -ForegroundColor Yellow
         return
     }
-    
+
     $commitDays = Get-Content $scheduleFile
     $today = Get-Date
     $todayStr = $today.ToString("yyyy-MM-dd")
-    
+
     Write-Host "Commit Schedule Overview:" -ForegroundColor Cyan
     Write-Host "Total scheduled days: $($commitDays.Count)" -ForegroundColor White
     Write-Host "Today ($todayStr) is $(if ($commitDays -contains $todayStr) { 'scheduled for commits' } else { 'not scheduled for commits' })" -ForegroundColor $(if ($commitDays -contains $todayStr) { 'Green' } else { 'Yellow' })
-    
+
     # Get intensity map if available
     $intensityMap = @{}
     if (Test-Path $intensityFile) {
@@ -80,44 +78,44 @@ function View-CommitSchedule {
                 $intensityMap[$parts[0]] = [int]$parts[1]
             }
         }
-        
+
         if ($intensityMap.ContainsKey($todayStr)) {
             $todayIntensity = $intensityMap[$todayStr]
             Write-Host "Today's commit intensity: $todayIntensity ($(Get-GreenLevelDescription $todayIntensity))" -ForegroundColor $(Get-ColorForIntensity $todayIntensity)
         }
-        
+
         # Show intensity distribution
         $intensityDistribution = @{
-            1 = 0
             2 = 0
             3 = 0
             4 = 0
             5 = 0
         }
-        
+
         foreach ($intensity in $intensityMap.Values) {
             $intensityDistribution[$intensity] += 1
         }
-        
+
         Write-Host "`nCommit intensity distribution:" -ForegroundColor Cyan
-        foreach ($level in 1..5) {
+        foreach ($level in 2..5) {
             $count = $intensityDistribution[$level]
             $percentage = [Math]::Round(($count / $commitDays.Count) * 100, 1)
             Write-Host "  Level $level ($(Get-GreenLevelDescription $level)): $count days ($percentage%)" -ForegroundColor $(Get-ColorForIntensity $level)
         }
     }
-    
+
     # Show upcoming commit days
     Write-Host "`nUpcoming commit days:" -ForegroundColor Cyan
     $upcomingDays = $commitDays | Where-Object { [DateTime]::Parse($_) -ge $today } | Select-Object -First 10
-    
+
     foreach ($day in $upcomingDays) {
         $daysUntil = ([DateTime]::Parse($day) - $today).Days
         $intensity = if ($intensityMap.ContainsKey($day)) { $intensityMap[$day] } else { 1 }
-        
+
         if ($day -eq $todayStr) {
             Write-Host "  $day (Today!) - $intensity commits ($(Get-GreenLevelDescription $intensity))" -ForegroundColor Green
-        } else {
+        }
+        else {
             Write-Host "  $day (in $daysUntil days) - $intensity commits ($(Get-GreenLevelDescription $intensity))" -ForegroundColor White
         }
     }
@@ -129,83 +127,87 @@ function View-GitHubActivity {
     if (Test-Path $issuesDir) {
         $issueFiles = Get-ChildItem -Path $issuesDir -Filter "issue-*.md"
         $issueCount = $issueFiles.Count
-        
+
         Write-Host "Issues: $issueCount total" -ForegroundColor Cyan
-        
+
         $openIssues = 0
         $closedIssues = 0
-        
+
         foreach ($issueFile in $issueFiles) {
             $content = Get-Content -Path $issueFile.FullName -Raw
             if ($content -match "Status: Open") {
                 $openIssues++
-            } else {
+            }
+            else {
                 $closedIssues++
             }
         }
-        
+
         Write-Host "  Open issues: $openIssues" -ForegroundColor Yellow
         Write-Host "  Closed issues: $closedIssues" -ForegroundColor Green
-        
+
         # Show latest issue
         if ($issueFiles.Count -gt 0) {
             $latestIssue = $issueFiles | Sort-Object LastWriteTime -Descending | Select-Object -First 1
             $content = Get-Content -Path $latestIssue.FullName -Raw
-            
+
             if ($content -match "Issue: (.+)") {
                 $title = $matches[1]
                 Write-Host "`nLatest issue: $title" -ForegroundColor White
             }
         }
-    } else {
+    }
+    else {
         Write-Host "No issues found." -ForegroundColor Yellow
     }
-    
+
     # View Pull Requests
     $prDir = ".\pull-requests"
     if (Test-Path $prDir) {
         $prFiles = Get-ChildItem -Path $prDir -Filter "pr-*.md"
         $prCount = $prFiles.Count
-        
+
         Write-Host "`nPull Requests: $prCount total" -ForegroundColor Cyan
-        
+
         $openPRs = 0
         $mergedPRs = 0
-        
+
         foreach ($prFile in $prFiles) {
             $content = Get-Content -Path $prFile.FullName -Raw
             if ($content -match "Status: Open") {
                 $openPRs++
-            } else {
+            }
+            else {
                 $mergedPRs++
             }
         }
-        
+
         Write-Host "  Open PRs: $openPRs" -ForegroundColor Yellow
         Write-Host "  Merged PRs: $mergedPRs" -ForegroundColor Green
-        
+
         # Show latest PR
         if ($prFiles.Count -gt 0) {
             $latestPR = $prFiles | Sort-Object LastWriteTime -Descending | Select-Object -First 1
             $content = Get-Content -Path $latestPR.FullName -Raw
-            
+
             if ($content -match "Pull Request: (.+)") {
                 $title = $matches[1]
                 Write-Host "`nLatest PR: $title" -ForegroundColor White
             }
         }
-    } else {
+    }
+    else {
         Write-Host "`nNo pull requests found." -ForegroundColor Yellow
     }
-    
+
     # View Activity Log
     $activityLog = ".\activity.log"
     if (Test-Path $activityLog) {
         $activities = Get-Content $activityLog
         $activityCount = $activities.Count
-        
+
         Write-Host "`nActivity Log: $activityCount total activities" -ForegroundColor Cyan
-        
+
         # Show latest activities
         if ($activityCount -gt 0) {
             Write-Host "`nLatest activities:" -ForegroundColor White
@@ -213,7 +215,8 @@ function View-GitHubActivity {
                 Write-Host "  $_" -ForegroundColor Gray
             }
         }
-    } else {
+    }
+    else {
         Write-Host "`nNo activity log found." -ForegroundColor Yellow
     }
 }
@@ -235,13 +238,13 @@ function Clean-Repository {
     Write-Host "- snippets/ directory" -ForegroundColor White
     Write-Host "- issues/ directory" -ForegroundColor White
     Write-Host "- pull-requests/ directory" -ForegroundColor White
-    
+
     $confirmation = Read-Host "Do you want to proceed? (Y/N)"
     if ($confirmation -ne "Y" -and $confirmation -ne "y") {
         Write-Host "Cleanup cancelled." -ForegroundColor Yellow
         return
     }
-    
+
     # List of essential files to keep
     $essentialFiles = @(
         "README.md",
@@ -257,57 +260,59 @@ function Clean-Repository {
         ".gitignore",
         "green_github.bat"
     )
-    
+
     # List of essential directories to keep
     $essentialDirs = @(
         "snippets",
         "issues",
         "pull-requests"
     )
-    
+
     # Get all files in the repository
-    $allFiles = Get-ChildItem -Path "." -File | Where-Object { 
+    $allFiles = Get-ChildItem -Path "." -File | Where-Object {
         # Exclude files in .git directory
-        $_.FullName -notmatch "\\\.git\\" 
+        $_.FullName -notmatch "\\\.git\\"
     }
-    
+
     # Files to remove
     $filesToRemove = @()
-    
+
     # Check each file
     foreach ($file in $allFiles) {
         $fileName = $file.Name
-        
+
         # Check if file is in the essential list
         if ($essentialFiles -notcontains $fileName) {
             $filesToRemove += $fileName
         }
     }
-    
+
     # Display files to be removed
     if ($filesToRemove.Count -gt 0) {
         Write-Host "The following files will be removed:" -ForegroundColor Red
         foreach ($file in $filesToRemove) {
             Write-Host "- $file" -ForegroundColor Red
         }
-        
+
         $confirmation = Read-Host "Confirm removal of these files? (Y/N)"
         if ($confirmation -eq "Y" -or $confirmation -eq "y") {
             foreach ($file in $filesToRemove) {
                 Remove-Item -Path $file -Force
                 Write-Host "Removed: $file" -ForegroundColor Gray
             }
-            
+
             # Commit the changes
             git add -A
             git commit -m "Clean up repository and remove unused files"
             git push origin main
-            
+
             Write-Host "Cleanup completed and changes pushed to GitHub." -ForegroundColor Green
-        } else {
+        }
+        else {
             Write-Host "File removal cancelled." -ForegroundColor Yellow
         }
-    } else {
+    }
+    else {
         Write-Host "No files to remove." -ForegroundColor Green
     }
 }
@@ -316,7 +321,7 @@ function Clean-Repository {
 do {
     Show-Menu
     $choice = Read-Host "Enter your choice"
-    
+
     switch ($choice) {
         '1' {
             Write-Host "Generating dashboard..." -ForegroundColor Cyan
@@ -325,32 +330,32 @@ do {
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         '2' {
-            Write-Host "Running morning workflow (simple commits)..." -ForegroundColor Yellow
-            
+            Write-Host "Running morning workflow (simple commits, 4 levels)..." -ForegroundColor Yellow
+
             # Set session to morning
             $env:WORKFLOW_SESSION = "morning"
-            
+
             # Run the workflow script
-            & .\green_workflow.ps1
-            
+            & .\green_workflow_4levels.ps1
+
             Write-Host "`nPress any key to continue..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         '3' {
-            Write-Host "Running afternoon workflow (PRs, issues, reviews)..." -ForegroundColor Yellow
-            
+            Write-Host "Running afternoon workflow (PRs, issues, reviews, 4 levels)..." -ForegroundColor Yellow
+
             # Set session to afternoon
             $env:WORKFLOW_SESSION = "afternoon"
-            
+
             # Run the workflow script
-            & .\green_workflow.ps1
-            
+            & .\green_workflow_4levels.ps1
+
             Write-Host "`nPress any key to continue..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
         '4' {
-            Write-Host "Optimizing for maximum green..." -ForegroundColor Cyan
-            & .\green_optimizer_fixed.ps1
+            Write-Host "Optimizing for maximum green (4 levels)..." -ForegroundColor Cyan
+            & .\green_optimizer_4levels.ps1
             Write-Host "`nPress any key to continue..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         }
