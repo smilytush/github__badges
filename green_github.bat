@@ -1,0 +1,13 @@
+@echo off
+echo Green GitHub Workflow Automation
+echo ==============================
+echo.
+echo Starting green menu...
+echo.
+powershell -ExecutionPolicy Bypass -File "%~dp0green_menu.ps1"
+if %ERRORLEVEL% NEQ 0 (
+    echo Error running the green menu script.
+    echo Error code: %ERRORLEVEL%
+    pause
+)
+pause
