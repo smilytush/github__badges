@@ -36,7 +36,7 @@ function Write-Log {
     param(
         [string]$Message
     )
-    
+
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     "[$timestamp] $Message" | Out-File -Append -Encoding utf8 $logFile
     Write-Host $Message
@@ -47,7 +47,7 @@ function Update-CodeSnippets {
     param(
         [string]$CommitNumber = "1"
     )
-    
+
     # Create Python snippet if it doesn't exist or update it
     $pythonFile = "$snippetsDir\example.py"
     if (-not (Test-Path $pythonFile)) {
@@ -57,7 +57,7 @@ class DataProcessor:
     def __init__(self, data):
         self.data = data
         self.processed = False
-    
+
     def process(self):
         # Process the data
         result = [x * 2 for x in self.data if x > 0]
@@ -74,7 +74,8 @@ def main():
 if __name__ == "__main__":
     main()
 "@ | Out-File -FilePath $pythonFile -Encoding utf8
-    } else {
+    }
+    else {
         # Add a comment with timestamp
         $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
         "# Updated on $timestamp - Session: $runSession - Commit: $CommitNumber" | Out-File -Append -FilePath $pythonFile -Encoding utf8
@@ -90,29 +91,30 @@ pragma solidity ^0.8.0;
 contract SimpleStorage {
     uint256 private value;
     address public owner;
-    
+
     event ValueChanged(uint256 newValue);
-    
+
     constructor() {
         owner = msg.sender;
     }
-    
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Not the contract owner");
         _;
     }
-    
+
     function setValue(uint256 _value) public onlyOwner {
         value = _value;
         emit ValueChanged(_value);
     }
-    
+
     function getValue() public view returns (uint256) {
         return value;
     }
 }
 "@ | Out-File -FilePath $solidityFile -Encoding utf8
-    } else {
+    }
+    else {
         # Add a comment with timestamp
         $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
         "// Updated on $timestamp - Session: $runSession - Commit: $CommitNumber" | Out-File -Append -FilePath $solidityFile -Encoding utf8
@@ -131,20 +133,20 @@ interface User {
 
 class UserManager {
     private users: User[] = [];
-    
+
     constructor(initialUsers: User[] = []) {
         this.users = initialUsers;
     }
-    
+
     addUser(user: User): void {
         this.users.push(user);
         console.log(`User ${user.name} added successfully`);
     }
-    
+
     getActiveUsers(): User[] {
         return this.users.filter(user => user.isActive);
     }
-    
+
     getUserById(id: number): User | undefined {
         return this.users.find(user => user.id === id);
     }
@@ -156,12 +158,13 @@ manager.addUser({ id: 1, name: 'John Doe', email: 'john@example.com', isActive: 
 const activeUsers = manager.getActiveUsers();
 console.log(activeUsers);
 "@ | Out-File -FilePath $typescriptFile -Encoding utf8
-    } else {
+    }
+    else {
         # Add a comment with timestamp
         $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
         "// Updated on $timestamp - Session: $runSession - Commit: $CommitNumber" | Out-File -Append -FilePath $typescriptFile -Encoding utf8
     }
-    
+
     Write-Log "Updated code snippets in Python, Solidity, and TypeScript (Commit #$CommitNumber)"
 }
 
@@ -170,21 +173,21 @@ function Make-SimpleCommit {
     param(
         [string]$CommitNumber = "1"
     )
-    
+
     # Get current branch name
     $currentBranch = (git rev-parse --abbrev-ref HEAD) 2>&1
     if ($LASTEXITCODE -ne 0) {
         $currentBranch = "main" # Default to main if command fails
     }
     Write-Log "Current branch: $currentBranch"
-    
+
     # Pull latest changes first
     git pull origin $currentBranch
     Write-Log "Pulled latest changes from remote"
-    
+
     # Update code snippets with random changes
     Update-CodeSnippets -CommitNumber $CommitNumber
-    
+
     # Create or update the activity log
     "Simple Commit ($runSession #$CommitNumber): $(Get-Date)" | Out-File -Append -Encoding utf8 "$repoPath\activity.log"
 
@@ -197,12 +200,12 @@ function Make-SimpleCommit {
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to stage files"
     }
-    
+
     git commit -m "Auto commit on $todayStr ($runSession session - #$CommitNumber)"
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to commit changes"
     }
-    
+
     # Check if remote exists
     $remoteExists = git remote | Where-Object { $_ -eq "origin" }
     if (-not $remoteExists) {
@@ -223,7 +226,7 @@ function Perform-GitHubWorkflow {
         [string]$Session,
         [string]$CommitNumber = "1"
     )
-    
+
     # Generate a feature name
     $featureTypes = @("feature", "enhancement", "bugfix", "improvement", "optimization")
     $featureAreas = @("user-interface", "authentication", "data-processing", "security", "performance")
@@ -231,23 +234,23 @@ function Perform-GitHubWorkflow {
     $featureArea = $featureAreas | Get-Random
     $featureId = Get-Random -Minimum 100 -Maximum 999
     $featureName = "$featureType/$featureArea-$featureId"
-    
+
     # Create a branch
     $branchName = "feature/$featureId-$featureArea"
-    
+
     # Create and checkout a new branch
     git checkout -b $branchName
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to create branch $branchName"
     }
-    
+
     Write-Log "Created and checked out branch: $branchName"
-    
+
     # Create an issue
     $issueId = Get-Random -Minimum 100 -Maximum 999
     $timestamp = Get-Date -Format "yyyy-MM-dd-HH-mm-ss"
     $issueFile = "$issuesDir\issue-$issueId-$timestamp.md"
-    
+
     $issueTitle = "Implement $featureType for $featureArea"
     $issueBody = @"
 We need to implement a new $featureType to improve $featureArea functionality.
@@ -258,7 +261,7 @@ We need to implement a new $featureType to improve $featureArea functionality.
 - Ensure backward compatibility
 - Add tests for the new functionality
 "@
-    
+
     @"
 # Issue: $issueTitle
 
@@ -277,12 +280,12 @@ $issueBody
 - [ ] Review code
 - [ ] Merge changes
 "@ | Out-File -FilePath $issueFile -Encoding utf8
-    
+
     Write-Log "Created issue #$issueId - $issueTitle"
-    
+
     # Update code snippets
     Update-CodeSnippets -CommitNumber $CommitNumber
-    
+
     # Add feature-specific code to snippets
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     @"
@@ -311,7 +314,7 @@ contract FeatureImplementation {
     // This contract implements the $featureType for $featureArea
     string public featureName = "$featureName";
     uint256 public featureId = $featureId;
-    
+
     function isImplemented() public pure returns (bool) {
         return true;
     }
@@ -329,7 +332,7 @@ contract FeatureImplementation {
 class FeatureImplementation {
     private featureName: string = "$featureName";
     private featureId: number = $featureId;
-    
+
     isImplemented(): boolean {
         console.log(`Implementing ${this.featureName}`);
         return true;
@@ -339,33 +342,33 @@ class FeatureImplementation {
 const feature = new FeatureImplementation();
 console.log(`Feature implemented: ${feature.isImplemented()}`);
 "@ | Out-File -Append -FilePath "$snippetsDir\app.ts" -Encoding utf8
-    
+
     # Commit changes
     git add .
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to stage files"
     }
-    
+
     git commit -m "Implement $featureName (#$issueId) - Commit #$CommitNumber"
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to commit changes"
     }
-    
+
     Write-Log "Committed changes for $featureName (Commit #$CommitNumber)"
-    
+
     # Push branch
     git push -u origin $branchName
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to push branch $branchName"
     }
-    
+
     Write-Log "Pushed branch $branchName to remote"
-    
+
     # Create a pull request
     $prId = Get-Random -Minimum 100 -Maximum 999
     $timestamp = Get-Date -Format "yyyy-MM-dd-HH-mm-ss"
     $prFile = "$prDir\pr-$prId-$timestamp.md"
-    
+
     $prTitle = "Implement $featureType for $featureArea"
     $prBody = @"
 This PR implements a new $featureType to improve $featureArea functionality.
@@ -377,7 +380,7 @@ This PR implements a new $featureType to improve $featureArea functionality.
 
 Fixes #$issueId
 "@
-    
+
     @"
 # Pull Request: $prTitle
 
@@ -403,9 +406,9 @@ $prBody
 - [ ] Tests passing
 - [ ] Ready to merge
 "@ | Out-File -FilePath $prFile -Encoding utf8
-    
+
     Write-Log "Created pull request #$prId - $prTitle"
-    
+
     # Perform code review
     $reviewers = @("Alice", "Bob", "Charlie", "David", "Eva")
     $reviewer = $reviewers | Get-Random
@@ -419,14 +422,14 @@ A few minor suggestions:
 
 Overall, great work!
 "@
-    
+
     # Find the PR file
     $prFiles = Get-ChildItem -Path $prDir -Filter "pr-$prId-*.md" -ErrorAction SilentlyContinue
-    
+
     if ($prFiles.Count -gt 0) {
         $prFile = $prFiles[0].FullName
         $prContent = Get-Content -Path $prFile -Raw
-        
+
         # Add review comments
         $reviewSection = @"
 
@@ -438,27 +441,27 @@ $reviewComments
 
 **Verdict:** Approved ✅
 "@
-        
+
         $updatedContent = $prContent + $reviewSection
         $updatedContent = $updatedContent.Replace("- [ ] Code review completed", "- [x] Code review completed")
         $updatedContent = $updatedContent.Replace("- [ ] Ready to merge", "- [x] Ready to merge")
-        
+
         $updatedContent | Out-File -FilePath $prFile -Encoding utf8 -Force
-        
+
         Write-Log "Added code review to PR #$prId by $reviewer"
     }
-    
+
     # Merge pull request
     # Find the PR file again (in case it changed)
     $prFiles = Get-ChildItem -Path $prDir -Filter "pr-$prId-*.md" -ErrorAction SilentlyContinue
-    
+
     if ($prFiles.Count -gt 0) {
         $prFile = $prFiles[0].FullName
         $prContent = Get-Content -Path $prFile -Raw
-        
+
         # Update PR status
         $updatedContent = $prContent.Replace("**Status:** Open", "**Status:** Merged")
-        
+
         $mergeSection = @"
 
 ## Merge Information
@@ -467,35 +470,35 @@ $reviewComments
 **Merged by:** System
 **Merge commit:** $(git rev-parse --short HEAD)
 "@
-        
+
         $updatedContent = $updatedContent + $mergeSection
         $updatedContent | Out-File -FilePath $prFile -Encoding utf8 -Force
     }
-    
+
     # Checkout main branch and merge
     git checkout main
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to checkout main branch"
     }
-    
+
     git merge $branchName --no-ff -m "Merge pull request #$prId from $branchName (Commit #$CommitNumber)"
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to merge branch $branchName"
     }
-    
+
     Write-Log "Merged pull request #$prId from branch $branchName"
-    
+
     # Close issue
     # Find the issue file
     $issueFiles = Get-ChildItem -Path $issuesDir -Filter "issue-$issueId-*.md" -ErrorAction SilentlyContinue
-    
+
     if ($issueFiles.Count -gt 0) {
         $issueFile = $issueFiles[0].FullName
         $issueContent = Get-Content -Path $issueFile -Raw
-        
+
         # Update issue status
         $updatedContent = $issueContent.Replace("**Status:** Open", "**Status:** Closed")
-        
+
         $closedSection = @"
 
 ## Resolution
@@ -504,21 +507,21 @@ $reviewComments
 **Resolved by:** PR #$prId
 **Status:** Fixed ✅
 "@
-        
+
         $updatedContent = $updatedContent.Replace("- [ ] Implement solution", "- [x] Implement solution")
         $updatedContent = $updatedContent.Replace("- [ ] Test changes", "- [x] Test changes")
         $updatedContent = $updatedContent.Replace("- [ ] Review code", "- [x] Review code")
         $updatedContent = $updatedContent.Replace("- [ ] Merge changes", "- [x] Merge changes")
-        
+
         $updatedContent = $updatedContent + $closedSection
         $updatedContent | Out-File -FilePath $issueFile -Encoding utf8 -Force
-        
+
         Write-Log "Closed issue #$issueId, resolved by PR #$prId"
     }
-    
+
     # Update activity log
     "GitHub Workflow ($Session #$CommitNumber): Implemented $featureName, PR #$prId, Issue #$issueId - $(Get-Date)" | Out-File -Append -Encoding utf8 "$repoPath\activity.log"
-    
+
     Write-Log "Completed GitHub workflow for $featureName ($Session session - Commit #$CommitNumber)"
 }
 
@@ -545,11 +548,11 @@ $hasRunThisSession = $false
 if (Test-Path $lastRunFile) {
     $lastRun = Get-Content $lastRunFile
     $lastRunParts = $lastRun -split "::"
-    
+
     if ($lastRunParts.Count -eq 2) {
         $lastRunDate = $lastRunParts[0]
         $lastRunSession = $lastRunParts[1]
-        
+
         if ($lastRunDate -eq $todayStr -and $lastRunSession -eq $runSession) {
             $hasRunThisSession = $true
             Write-Log "Script has already run in the $runSession session today. Skipping execution."
@@ -567,9 +570,9 @@ if (-not $hasRunThisSession) {
         try {
             # Determine workflow type for this session
             $workflowType = if ($runSession -eq "morning") { "standard" } else { "advanced" }
-            
+
             # Get commit intensity for today
-            $commitIntensity = 1
+            $commitIntensity = 2  # Minimum intensity is now 2
             if (Test-Path $intensityFile) {
                 $intensityMap = @{}
                 Get-Content $intensityFile | ForEach-Object {
@@ -578,37 +581,43 @@ if (-not $hasRunThisSession) {
                         $intensityMap[$parts[0]] = [int]$parts[1]
                     }
                 }
-                
+
                 if ($intensityMap.ContainsKey($todayStr)) {
                     $commitIntensity = $intensityMap[$todayStr]
                 }
+
+                # Ensure minimum intensity of 2
+                if ($commitIntensity -lt 2) {
+                    $commitIntensity = 2
+                }
             }
-            
+
             Write-Log "Commit intensity for today: $commitIntensity (darker green)"
-            
+
             if ($workflowType -eq "standard") {
                 # Morning session: Simple commits
                 for ($i = 1; $i -le $commitIntensity; $i++) {
                     Write-Log "Making simple commit #$i of $commitIntensity..."
                     Make-SimpleCommit -CommitNumber $i
-                    
+
                     # Add a small delay between commits
                     Start-Sleep -Seconds (Get-Random -Minimum 5 -Maximum 15)
                 }
-            } else {
+            }
+            else {
                 # Afternoon session: Full GitHub workflow
                 for ($i = 1; $i -le $commitIntensity; $i++) {
                     Write-Log "Performing GitHub workflow #$i of $commitIntensity..."
                     Perform-GitHubWorkflow -Session $runSession -CommitNumber $i
-                    
+
                     # Add a small delay between workflows
                     Start-Sleep -Seconds (Get-Random -Minimum 10 -Maximum 30)
                 }
             }
-            
+
             # Record that the script has run in this session
             "$todayStr::$runSession" | Out-File -FilePath $lastRunFile -Encoding utf8 -Force
-            
+
             Write-Log "Completed all $commitIntensity commits for $runSession session"
         }
         catch {
@@ -617,7 +626,7 @@ if (-not $hasRunThisSession) {
     }
     else {
         Write-Log "Today ($todayStr) is not scheduled for a commit."
-        
+
         # Record that the script has run in this session even if no commit was made
         "$todayStr::$runSession" | Out-File -FilePath $lastRunFile -Encoding utf8 -Force
     }
