@@ -1,0 +1,2 @@
+﻿[2025-05-02 10:09:06] Session overridden by environment variable: morning
+[2025-05-02 10:09:07] Today (2025-05-02) is not scheduled for a commit.

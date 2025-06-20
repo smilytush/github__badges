@@ -1,0 +1,23 @@
+[Wed 06/18/2025 14:37:19.03] Badge Automation Diagnostics Started 
+Windows Version: 
+
+Microsoft Windows [Version 10.0.19045.5487]
+PowerShell Version: 
+
+Major  Minor  Build  Revision
+-----  -----  -----  --------
+5      1      19041  5486    
+
+
+SUCCESS: PowerShell accessible 
+Current Execution Policy: 
+Bypass
+Script Directory: J:\green-commits\ 
+Testing write permissions... 
+SUCCESS: Write permissions OK 
+Git Version: 
+git version 2.39.1.windows.1
+SUCCESS: Git accessible 
+Git User Configuration: 
+smilytush
+tushar161@hotmail.com

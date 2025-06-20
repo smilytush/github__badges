@@ -1,0 +1,22 @@
+﻿{
+    "lastEvaluationDate":  "2025-06-18 14:00:37",
+    "earnedBadges":  [
+                         "PullShark",
+                         "YOLO",
+                         "Quickdraw",
+                         "PairExtraordinaire",
+                         "ArcticCodeVault"
+                     ],
+    "totalEvaluations":  3,
+    "statistics":  {
+                       "rapidClosures":  16,
+                       "commitsCreated":  65,
+                       "issuesCreated":  0,
+                       "pullRequestsCreated":  11,
+                       "coAuthoredCommits":  24,
+                       "directMerges":  6
+                   },
+    "badgeProgress":  {
+
+                      }
+}

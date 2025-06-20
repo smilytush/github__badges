@@ -1,0 +1,97 @@
+[Sun 06/08/2025 11:36:28.85] Green Commits Master Control Launcher started 
+[Sun 06/08/2025 11:36:28.85] Working directory: J:\green-commits 
+[Sun 06/08/2025 11:36:28.85] Command line arguments: --help 
+[Sun 06/08/2025 11:36:28.85] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Sun 06/08/2025 11:36:28.85] Windows PowerShell 5.1+ detected and working 
+[Sun 06/08/2025 11:38:04.45] Green Commits Master Control Launcher started 
+[Sun 06/08/2025 11:38:04.45] Working directory: J:\green-commits 
+[Sun 06/08/2025 11:38:04.45] Command line arguments: -Mode Status /Q 
+[Sun 06/08/2025 11:38:04.45] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Sun 06/08/2025 11:38:04.45] Windows PowerShell 5.1+ detected and working 
+[Sun 06/08/2025 11:39:40.75] Green Commits Master Control Launcher started 
+[Sun 06/08/2025 11:39:40.75] Working directory: J:\green-commits 
+[Sun 06/08/2025 11:39:40.75] Command line arguments: -Mode Status /Q 
+[Sun 06/08/2025 11:39:40.75] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Sun 06/08/2025 11:39:40.75] Windows PowerShell 5.1+ detected and working 
+[Sun 06/08/2025 11:39:40.75] Command line parameters: -Mode Status /Q 
+[Sun 06/08/2025 11:39:40.75] Executing PowerShell command: powershell -ExecutionPolicy Bypass -NoProfile -File \"GreenCommits-MasterControl.ps1\" -Mode Status /Q 
+[Sun 06/08/2025 11:39:40.75] PowerShell script failed (Exit Code: -196608) 
+[Sun 06/08/2025 11:39:40.75] Green Commits Master Control Launcher session ended 
+[Sun 06/08/2025 11:39:40.75] Final exit code: -196608 
+ 
+[Sun 06/08/2025 11:41:02.25] Green Commits Master Control Launcher started 
+[Sun 06/08/2025 11:41:02.25] Working directory: J:\green-commits 
+[Sun 06/08/2025 11:41:02.25] Command line arguments: -Mode Status /Q 
+[Sun 06/08/2025 11:41:02.25] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Sun 06/08/2025 11:41:02.25] Windows PowerShell 5.1+ detected and working 
+[Sun 06/08/2025 11:41:02.25] Command line parameters: -Mode Status /Q 
+[Sun 06/08/2025 11:41:02.25] Executing PowerShell command: powershell -ExecutionPolicy Bypass -NoProfile -File GreenCommits-MasterControl.ps1 -Mode Status /Q 
+
+[Sun 06/08/2025 11:41:02.25] PowerShell script executed successfully (Exit Code: 0
+[Sun 06/08/2025 11:41:02.25] PowerShell script failed (Exit Code: 0) 
+[Sun 06/08/2025 11:41:02.25] Green Commits Master Control Launcher session ended 
+[Sun 06/08/2025 11:41:02.25] Final exit code: 0 
+ 
+[Sun 06/08/2025 11:46:44.69] Green Commits Master Control Launcher started 
+[Sun 06/08/2025 11:46:44.69] Working directory: J:\green-commits 
+[Sun 06/08/2025 11:46:44.69] Command line arguments: -Mode Test /Q 
+[Sun 06/08/2025 11:46:44.69] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Sun 06/08/2025 11:46:44.69] Windows PowerShell 5.1+ detected and working 
+[Sun 06/08/2025 11:46:44.69] Command line parameters: -Mode Test /Q 
+[Sun 06/08/2025 11:46:44.69] Executing PowerShell command: powershell -ExecutionPolicy Bypass -NoProfile -File GreenCommits-MasterControl.ps1 -Mode Test /Q 
+[Sun 06/08/2025 11:46:44.69] PowerShell script executed successfully (Exit Code: 0
+[Sun 06/08/2025 11:46:44.69] PowerShell script failed (Exit Code: 0) 
+[Sun 06/08/2025 11:46:44.69] Green Commits Master Control Launcher session ended 
+[Sun 06/08/2025 11:46:44.69] Final exit code: 0 
+ 
+[Sun 06/08/2025 11:50:04.51] Green Commits Master Control Launcher started 
+[Sun 06/08/2025 11:50:04.51] Working directory: J:\green-commits 
+[Sun 06/08/2025 11:50:04.51] Command line arguments: -Mode Status /Q 
+[Sun 06/08/2025 11:50:04.51] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Sun 06/08/2025 11:50:04.51] Windows PowerShell 5.1+ detected and working 
+[Sun 06/08/2025 11:50:04.51] Command line parameters: -Mode Status /Q 
+[Sun 06/08/2025 11:50:04.51] Executing PowerShell command: powershell -ExecutionPolicy Bypass -NoProfile -File GreenCommits-MasterControl.ps1 -Mode Status /Q 
+[Sun 06/08/2025 11:50:04.51] PowerShell script executed successfully (Exit Code: 0) 
+[Sun 06/08/2025 11:50:04.51] Green Commits Master Control Launcher session ended 
+[Sun 06/08/2025 11:50:04.51] Final exit code: 0 
+ 
+[Sun 06/08/2025 11:51:23.10] Green Commits Master Control Launcher started 
+[Sun 06/08/2025 11:51:23.10] Working directory: J:\green-commits 
+[Sun 06/08/2025 11:51:23.10] Command line arguments: -Help /Q 
+[Sun 06/08/2025 11:51:23.10] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Sun 06/08/2025 11:51:23.10] Windows PowerShell 5.1+ detected and working 
+[Sun 06/08/2025 11:51:23.10] Command line parameters: -Help /Q 
+[Sun 06/08/2025 11:51:23.10] Executing PowerShell command: powershell -ExecutionPolicy Bypass -NoProfile -File GreenCommits-MasterControl.ps1 -Help /Q 
+[Sun 06/08/2025 11:51:23.10] PowerShell script failed (Exit Code: 1) 
+[Sun 06/08/2025 11:51:23.10] Green Commits Master Control Launcher session ended 
+[Sun 06/08/2025 11:51:23.10] Final exit code: 1 
+ 
+[Sun 06/08/2025 11:52:44.24] Green Commits Master Control Launcher started 
+[Sun 06/08/2025 11:52:44.24] Working directory: J:\green-commits 
+[Sun 06/08/2025 11:52:44.24] Command line arguments: -Help /Q 
+[Sun 06/08/2025 11:52:44.24] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Sun 06/08/2025 11:52:44.24] Windows PowerShell 5.1+ detected and working 
+[Sun 06/08/2025 11:52:44.24] Command line parameters: -Help 
+[Sun 06/08/2025 11:52:44.24] Executing PowerShell command: powershell -ExecutionPolicy Bypass -NoProfile -File GreenCommits-MasterControl.ps1 -Help 
+[Sun 06/08/2025 11:52:44.24] PowerShell script executed successfully (Exit Code: 0) 
+[Sun 06/08/2025 11:52:44.24] Green Commits Master Control Launcher session ended 
+[Sun 06/08/2025 11:52:44.24] Final exit code: 0 
+ 
+[Sun 06/08/2025 16:41:25.32] Green Commits Master Control Launcher started 
+[Sun 06/08/2025 16:41:25.32] Working directory: J:\green-commits 
+[Sun 06/08/2025 16:41:25.32] Command line arguments:  
+[Sun 06/08/2025 16:41:25.32] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Sun 06/08/2025 16:41:25.32] Windows PowerShell 5.1+ detected and working 
+[Sun 06/08/2025 16:41:25.32] Executing PowerShell command: powershell -ExecutionPolicy Bypass -NoProfile -File GreenCommits-MasterControl.ps1 
+[Mon 06/09/2025  9:32:33.85] Green Commits Master Control Launcher started 
+[Mon 06/09/2025  9:32:33.85] Working directory: J:\green-commits 
+[Mon 06/09/2025  9:32:33.85] Command line arguments:  
+[Mon 06/09/2025  9:32:33.85] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Mon 06/09/2025  9:32:33.85] Windows PowerShell 5.1+ detected and working 
+[Mon 06/09/2025  9:32:33.85] Executing PowerShell command: powershell -ExecutionPolicy Bypass -NoProfile -File GreenCommits-MasterControl.ps1 
+[Tue 06/10/2025  9:28:21.86] Green Commits Master Control Launcher started 
+[Tue 06/10/2025  9:28:21.86] Working directory: J:\green-commits 
+[Tue 06/10/2025  9:28:21.86] Command line arguments:  
+[Tue 06/10/2025  9:28:21.86] PowerShell script found: GreenCommits-MasterControl.ps1 
+[Tue 06/10/2025  9:28:21.86] Windows PowerShell 5.1+ detected and working 
+[Tue 06/10/2025  9:28:21.86] Executing PowerShell command: powershell -ExecutionPolicy Bypass -NoProfile -File GreenCommits-MasterControl.ps1 

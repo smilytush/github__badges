@@ -1,0 +1,180 @@
+[Wed 06/18/2025 14:59:59.18] FREE Badge Automation Started 
+Switched to a new branch 'feature/free-badge-enhancement-1'
+Switched to a new branch 'feature/free-badge-enhancement-2'
+Switched to a new branch 'feature/free-badge-enhancement-3'
+Switched to a new branch 'feature/free-badge-enhancement-4'
+Switched to a new branch 'feature/free-badge-enhancement-5'
+Switched to a new branch 'feature/free-badge-enhancement-6'
+Switched to a new branch 'feature/free-badge-enhancement-7'
+Switched to a new branch 'feature/free-badge-enhancement-8'
+fatal: pathspec 'free-badge-feature-%i.md' did not match any files
+error: src refspec feature/free-badge-enhancement-%i does not match any
+error: failed to push some refs to 'https://github.com/smilytush/github-commits.git'
+Switched to branch 'main'
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
+remote:      Visit the repository settings page, https://github.com/smilytush/github-commits/settings/security_analysis        
+remote:             
+remote:             
+remote:       —— GitHub Personal Access Token ——————————————————————        
+remote:        locations:        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: GreenCommits-MasterControl.ps1:72        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: config.json:5        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: enhanced_historical_system_v2.ps1:17        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: run_enhanced_historical_system.ps1:15        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: simple_test_mode.ps1:8        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/smilytush/github-commits/security/secret-scanning/unblock-secret/2yfuu59Yi5n29ySTmQUtUbilkxq        
+remote:             
+remote: 
+remote: 
+To https://github.com/smilytush/github-commits.git
+ ! [remote rejected]     main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/smilytush/github-commits.git'
+error: branch 'feature/free-badge-enhancement-%i' not found.
+error: unable to delete 'feature/free-badge-enhancement-%i': remote ref does not exist
+error: failed to push some refs to 'https://github.com/smilytush/github-commits.git'
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
+remote:      Visit the repository settings page, https://github.com/smilytush/github-commits/settings/security_analysis        
+remote:             
+remote:             
+remote:       —— GitHub Personal Access Token ——————————————————————        
+remote:        locations:        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: GreenCommits-MasterControl.ps1:72        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: config.json:5        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: enhanced_historical_system_v2.ps1:17        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: run_enhanced_historical_system.ps1:15        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: simple_test_mode.ps1:8        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/smilytush/github-commits/security/secret-scanning/unblock-secret/2yfuu59Yi5n29ySTmQUtUbilkxq        
+remote:             
+remote: 
+remote: 
+To https://github.com/smilytush/github-commits.git
+ ! [remote rejected]     main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/smilytush/github-commits.git'
+[Wed 06/18/2025 15:03:55.06] FREE Badge Automation Started 
+fatal: a branch named 'feature/free-badge-enhancement-1' already exists
+fatal: a branch named 'feature/free-badge-enhancement-2' already exists
+fatal: a branch named 'feature/free-badge-enhancement-3' already exists
+fatal: a branch named 'feature/free-badge-enhancement-4' already exists
+fatal: a branch named 'feature/free-badge-enhancement-5' already exists
+fatal: a branch named 'feature/free-badge-enhancement-6' already exists
+fatal: a branch named 'feature/free-badge-enhancement-7' already exists
+fatal: a branch named 'feature/free-badge-enhancement-8' already exists
+fatal: pathspec 'free-badge-feature-%i.md' did not match any files
+error: src refspec feature/free-badge-enhancement-%i does not match any
+error: failed to push some refs to 'https://github.com/smilytush/github-commits.git'
+Already on 'main'
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
+remote:      Visit the repository settings page, https://github.com/smilytush/github-commits/settings/security_analysis        
+remote:             
+remote:             
+remote:       —— GitHub Personal Access Token ——————————————————————        
+remote:        locations:        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: GreenCommits-MasterControl.ps1:72        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: config.json:5        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: enhanced_historical_system_v2.ps1:17        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: run_enhanced_historical_system.ps1:15        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: simple_test_mode.ps1:8        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/smilytush/github-commits/security/secret-scanning/unblock-secret/2yfuu59Yi5n29ySTmQUtUbilkxq        
+remote:             
+remote: 
+remote: 
+To https://github.com/smilytush/github-commits.git
+ ! [remote rejected]     main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/smilytush/github-commits.git'
+error: branch 'feature/free-badge-enhancement-%i' not found.
+error: unable to delete 'feature/free-badge-enhancement-%i': remote ref does not exist
+error: failed to push some refs to 'https://github.com/smilytush/github-commits.git'
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
+remote:      Visit the repository settings page, https://github.com/smilytush/github-commits/settings/security_analysis        
+remote:             
+remote:             
+remote:       —— GitHub Personal Access Token ——————————————————————        
+remote:        locations:        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: GreenCommits-MasterControl.ps1:72        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: config.json:5        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: enhanced_historical_system_v2.ps1:17        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: run_enhanced_historical_system.ps1:15        
+remote:          - commit: dc41117713c7e47b87e968c423ba287a0fe7c0fd        
+remote:            path: simple_test_mode.ps1:8        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/smilytush/github-commits/security/secret-scanning/unblock-secret/2yfuu59Yi5n29ySTmQUtUbilkxq        
+remote:             
+remote: 
+remote: 
+To https://github.com/smilytush/github-commits.git
+ ! [remote rejected]     main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/smilytush/github-commits.git'
