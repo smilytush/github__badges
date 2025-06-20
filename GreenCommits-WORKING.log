@@ -1,0 +1,14 @@
+﻿[2025-06-20 15:58:47] [INFO] === GreenCommits WORKING System Starting ===
+[2025-06-20 15:58:48] [INFO] Mode: Test
+[2025-06-20 15:58:48] [INFO] Validating environment and prerequisites...
+[2025-06-20 15:58:48] [SUCCESS] Git available: git version 2.39.1.windows.1
+[2025-06-20 15:58:49] [ERROR] ERROR: GitHub API access failed: The remote server returned an error: (401) Unauthorized.
+[2025-06-20 15:58:49] [ERROR] Environment validation failed. Exiting.
+[2025-06-20 15:58:49] [ERROR] === OPERATION FAILED ===
+[2025-06-20 15:59:58] [INFO] === GreenCommits WORKING System Starting ===
+[2025-06-20 15:59:58] [INFO] Mode: Test
+[2025-06-20 15:59:58] [INFO] Validating environment and prerequisites...
+[2025-06-20 15:59:58] [SUCCESS] Git available: git version 2.39.1.windows.1
+[2025-06-20 15:59:59] [ERROR] ERROR: GitHub API access failed: The remote server returned an error: (401) Unauthorized.
+[2025-06-20 15:59:59] [ERROR] Environment validation failed. Exiting.
+[2025-06-20 15:59:59] [ERROR] === OPERATION FAILED ===
