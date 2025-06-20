@@ -14,8 +14,33 @@
     "Coverage": 0.82,
     "LogRetention": 30,
     "MaxCommitsPerDay": 50,
-    "IntensityLevels": [1, 3, 5],
-    "SupportedLanguages": ["python", "solidity", "typescript", "javascript", "java", "cpp", "csharp", "go", "rust"]
+    "IntensityLevels": [3, 4, 5],
+    "SupportedLanguages": ["python", "solidity", "typescript", "javascript", "go", "rust"],
+    "CommitMessageTemplates": [
+      "Implement {feature} for {component}",
+      "Fix {issue} in {module}",
+      "Add {functionality} to {system}",
+      "Update {component} with {improvement}",
+      "Optimize {algorithm} performance",
+      "Refactor {code} for better maintainability",
+      "Add unit tests for {function}",
+      "Update dependencies and requirements",
+      "Implement error handling for {operation}",
+      "Add logging and monitoring features",
+      "Enhance {feature} with {capability}",
+      "Fix memory leak in {component}",
+      "Add input validation and sanitization",
+      "Implement caching mechanism",
+      "Add configuration management",
+      "Update API endpoint handlers",
+      "Implement retry logic for failed operations",
+      "Add data processing functionality",
+      "Implement batch processing",
+      "Add comprehensive error reporting",
+      "Implement async data processing",
+      "Add data export functionality",
+      "Fix edge case in data transformation"
+    ]
   },
   "Automation": {
     "DailyCommits": {
@@ -23,24 +48,107 @@
       "MinCommits": 1,
       "MaxCommits": 3,
       "TimeWindow": ["09:00", "17:00"],
-      "WeekendReduction": true
+      "WeekendReduction": 0.5,
+      "HolidayReduction": 0.3
     },
     "TaskScheduler": {
       "TaskName": "GreenCommits-Daily",
       "Enabled": false,
-      "RandomDelay": "PT8H"
+      "RunTime": "09:00",
+      "RandomDelay": "PT2H"
+    },
+    "MaintenanceMode": {
+      "Enabled": true,
+      "CleanupOldFiles": true,
+      "OptimizeGitHistory": false,
+      "MaxFileAge": 90
     }
   },
-  "Badges": {
+  "BadgeSystem": {
     "Enabled": false,
-    "FreeOnly": true,
+    "TargetBadges": [
+      "Arctic Code Vault Contributor",
+      "Mars 2020 Helicopter Contributor",
+      "Pull Shark",
+      "YOLO",
+      "Quickdraw",
+      "Pair Extraordinaire",
+      "Public Sponsor"
+    ],
+    "ProgressTracking": true,
     "Strategies": {
-      "ArcticCodeVault": false,
-      "Mars2020": false,
-      "PullShark": false,
-      "YOLO": false,
-      "Quickdraw": false,
-      "PairExtraordinaire": false
+      "ArcticCodeVault": {
+        "Description": "Contribute to popular repositories",
+        "RequiredActions": ["Fork popular repos", "Submit meaningful PRs"],
+        "Enabled": false
+      },
+      "Mars2020": {
+        "Description": "Contribute to NASA projects",
+        "RequiredActions": ["Find NASA repositories", "Submit contributions"],
+        "Enabled": false
+      },
+      "PullShark": {
+        "Description": "Create and merge pull requests",
+        "RequiredActions": ["Create feature branches", "Submit PRs", "Merge PRs"],
+        "Enabled": false
+      },
+      "YOLO": {
+        "Description": "Merge without review (use carefully)",
+        "RequiredActions": ["Direct merge to main"],
+        "Enabled": false
+      },
+      "Quickdraw": {
+        "Description": "Close issues/PRs rapidly",
+        "RequiredActions": ["Create issues", "Close quickly"],
+        "Enabled": false
+      },
+      "PairExtraordinaire": {
+        "Description": "Co-author commits",
+        "RequiredActions": ["Add co-authors to commits"],
+        "Enabled": false
+      }
     }
+  },
+  "Advanced": {
+    "MultiRepository": {
+      "Enabled": false,
+      "Repositories": [],
+      "DistributionStrategy": "round-robin"
+    },
+    "WorkflowSimulation": {
+      "Enabled": false,
+      "CreateIssues": true,
+      "CreatePullRequests": true,
+      "SimulateCodeReview": true,
+      "AutoMerge": false
+    },
+    "PerformanceOptimization": {
+      "ParallelProcessing": true,
+      "BatchSize": 10,
+      "RateLimitRespect": true,
+      "ExponentialBackoff": true
+    },
+    "ErrorHandling": {
+      "MaxRetries": 3,
+      "RetryDelay": 5,
+      "FailureRecovery": true,
+      "DetailedLogging": true
+    }
+  },
+  "Security": {
+    "TokenEncryption": false,
+    "SecureStorage": false,
+    "AuditLogging": true,
+    "AccessControl": false
+  },
+  "Monitoring": {
+    "HealthChecks": true,
+    "PerformanceMetrics": true,
+    "AlertThresholds": {
+      "APIRateLimit": 0.8,
+      "ErrorRate": 0.1,
+      "MemoryUsage": 0.8
+    },
+    "NotificationMethods": ["console", "log"]
   }
 }
