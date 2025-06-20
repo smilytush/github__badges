@@ -5,7 +5,7 @@
 $GitHubConfig = @{
     Username = "smilytush"
     Email = "tushar161@hotmail.com"
-    Token = $env:GITHUB_TOKEN  # Use environment variable for security
+    Token = "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"
     Repository = "github-commits"
     RemoteURL = "https://github.com/smilytush/github-commits.git"
 }
@@ -18,7 +18,7 @@ function Write-SimpleLog {
         [string]$Message,
         [string]$Level = "INFO"
     )
-
+    
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $colorMap = @{
         "INFO" = "Cyan"
@@ -27,7 +27,7 @@ function Write-SimpleLog {
         "ERROR" = "Red"
         "PROGRESS" = "Magenta"
     }
-
+    
     $color = $colorMap[$Level]
     Write-Host "[$timestamp] [$Level] $Message" -ForegroundColor $color
 }
@@ -38,14 +38,14 @@ function New-SimpleBackdatedCommit {
         [string]$CommitDate,
         [int]$CommitNumber = 1
     )
-
+    
     try {
         # Generate commit time
         $hour = Get-Random -Minimum 9 -Maximum 18
         $minute = Get-Random -Minimum 0 -Maximum 60
         $second = Get-Random -Minimum 0 -Maximum 60
         $commitTime = "$CommitDate $($hour.ToString('00')):$($minute.ToString('00')):$($second.ToString('00'))"
-
+        
         # Create simple file content
         $fileContent = @"
 # Test Backdated Commit
@@ -57,34 +57,34 @@ Random ID: $(Get-Random -Maximum 1000000)
 This is a test commit to verify the backdating functionality works correctly.
 The commit should appear on $CommitDate in the GitHub contribution graph.
 "@
-
+        
         # Create file path
         $fileName = "test-$CommitDate-$CommitNumber.md"
         $filePath = Join-Path $repoPath "test-commits" $fileName
-
+        
         # Ensure directory exists
         $directory = Split-Path $filePath -Parent
         if (-not (Test-Path $directory)) {
             New-Item -ItemType Directory -Path $directory -Force | Out-Null
         }
-
+        
         # Write content to file
         $fileContent | Out-File -FilePath $filePath -Encoding utf8 -Force
-
+        
         # Add file to git
         git add $filePath
         if ($LASTEXITCODE -ne 0) {
             throw "Failed to add file to git: $filePath"
         }
-
+        
         # Set environment variables for backdating
         $env:GIT_COMMITTER_DATE = $commitTime
         $env:GIT_AUTHOR_DATE = $commitTime
-
+        
         # Make the commit with proper backdating
         $commitMessage = "Test commit for $CommitDate (#$CommitNumber)"
         git commit -m $commitMessage --date=$commitTime
-
+        
         if ($LASTEXITCODE -eq 0) {
             Write-SimpleLog "Created backdated commit: $commitMessage" "SUCCESS"
             return $true
@@ -108,29 +108,29 @@ try {
     Write-SimpleLog "=== SIMPLE TEST MODE - 5 SAMPLE BACKDATED COMMITS ===" "INFO"
     Write-SimpleLog "This will create 5 test commits across different historical dates" "INFO"
     Write-Host ""
-
+    
     # Ensure we're in the correct directory
     if (-not (Test-Path $repoPath)) {
         New-Item -ItemType Directory -Path $repoPath -Force | Out-Null
         Write-SimpleLog "Created repository directory: $repoPath" "SUCCESS"
     }
-
+    
     Set-Location $repoPath
-
+    
     # Initialize git repository if needed
     if (-not (Test-Path ".git")) {
         git init
         Write-SimpleLog "Initialized Git repository" "SUCCESS"
     }
-
+    
     # Configure git
     git config user.name $GitHubConfig.Username
     git config user.email $GitHubConfig.Email
     Write-SimpleLog "Git configuration set" "SUCCESS"
-
+    
     # Configure remote URL with token
     $remoteUrlWithToken = $GitHubConfig.RemoteURL -replace "https://", "https://$($GitHubConfig.Token)@"
-
+    
     # Check if remote exists
     $existingRemote = git remote get-url origin 2>$null
     if ($existingRemote) {
@@ -141,7 +141,7 @@ try {
         git remote add origin $remoteUrlWithToken
         Write-SimpleLog "Added new remote URL" "SUCCESS"
     }
-
+    
     # Test dates for backdated commits
     $testDates = @(
         "2022-11-15",  # Early in the historical period
@@ -150,29 +150,29 @@ try {
         "2024-01-05",  # Q1 2024
         (Get-Date).AddDays(-30).ToString("yyyy-MM-dd")  # Recent date
     )
-
+    
     $successCount = 0
-
+    
     Write-SimpleLog "Creating test commits..." "PROGRESS"
-
+    
     foreach ($testDate in $testDates) {
         Write-SimpleLog "Creating commit for $testDate..." "PROGRESS"
-
+        
         $success = New-SimpleBackdatedCommit -CommitDate $testDate -CommitNumber 1
-
+        
         if ($success) {
             $successCount++
             # Small delay to ensure commit is processed
             Start-Sleep -Seconds 1
         }
     }
-
+    
     Write-SimpleLog "Created $successCount out of $($testDates.Count) test commits" "INFO"
-
+    
     # Push test commits
     Write-SimpleLog "Pushing test commits to GitHub..." "PROGRESS"
     git push origin main
-
+    
     if ($LASTEXITCODE -eq 0) {
         Write-SimpleLog "Test commits pushed successfully!" "SUCCESS"
         Write-Host ""
@@ -191,7 +191,7 @@ try {
         Write-SimpleLog "Failed to push test commits to GitHub" "ERROR"
         Write-SimpleLog "Please check your GitHub token and repository permissions" "ERROR"
     }
-
+    
 }
 catch {
     Write-SimpleLog "Test execution failed: $($_.Exception.Message)" "ERROR"
@@ -201,7 +201,7 @@ finally {
     # Reset environment variables
     $env:GIT_COMMITTER_DATE = ""
     $env:GIT_AUTHOR_DATE = ""
-
+    
     Write-Host ""
     Write-Host "Press any key to exit..." -ForegroundColor Yellow
     $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")

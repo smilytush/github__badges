@@ -12,7 +12,7 @@ param(
 $GitHubConfig = @{
     Username = "smilytush"
     Email = "tushar161@hotmail.com"
-    Token = $env:GITHUB_TOKEN  # Use environment variable for security
+    Token = "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"
     Repository = "github-commits"
     RemoteURL = "https://github.com/smilytush/github-commits.git"
     DefaultBranch = "main"
@@ -27,7 +27,7 @@ function Write-Log {
         [string]$Message,
         [string]$Level = "INFO"
     )
-
+    
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $colorMap = @{
         "INFO" = "Cyan"
@@ -36,7 +36,7 @@ function Write-Log {
         "ERROR" = "Red"
         "PROGRESS" = "Magenta"
     }
-
+    
     $color = $colorMap[$Level]
     Write-Host "[$timestamp] [$Level] $Message" -ForegroundColor $color
 }
@@ -46,17 +46,17 @@ function Show-HistoricalDateRange {
     # Fixed start date: November 1st, 2022
     $startDate = Get-Date -Year 2022 -Month 11 -Day 1
     $endDate = Get-Date
-
+    
     # Calculate total days in the period
     $totalDays = ($endDate - $startDate).Days + 1
-
+    
     # Calculate 82% coverage
     $targetDays = [Math]::Floor($totalDays * 0.82)
-
+    
     # Estimate total commits
     $avgCommitsPerDay = 20  # Conservative estimate
     $estimatedTotalCommits = $targetDays * $avgCommitsPerDay
-
+    
     Write-Host ""
     Write-Host "=== ENHANCED HISTORICAL BACKDATED GITHUB COMMIT SYSTEM ===" -ForegroundColor Magenta
     Write-Host ""
@@ -86,7 +86,7 @@ function Show-HistoricalDateRange {
     Write-Host "  Repository: $($GitHubConfig.Repository)" -ForegroundColor White
     Write-Host "  Remote URL: $($GitHubConfig.RemoteURL)" -ForegroundColor White
     Write-Host ""
-
+    
     return @{
         StartDate = $startDate
         EndDate = $endDate
@@ -99,21 +99,21 @@ function Show-HistoricalDateRange {
 # Function to validate GitHub access
 function Test-GitHubAccess {
     Write-Log "Validating GitHub credentials and repository access..." "INFO"
-
+    
     try {
         # Test API access
         $headers = @{
             "Authorization" = "token $($GitHubConfig.Token)"
             "Accept" = "application/vnd.github.v3+json"
         }
-
+        
         $userResponse = Invoke-RestMethod -Uri "$($GitHubConfig.BaseAPIURL)/user" -Headers $headers -Method Get
         Write-Log "Successfully authenticated as user: $($userResponse.login)" "SUCCESS"
-
+        
         # Test repository access
         $repoResponse = Invoke-RestMethod -Uri "$($GitHubConfig.BaseAPIURL)/repos/$($GitHubConfig.Username)/$($GitHubConfig.Repository)" -Headers $headers -Method Get
         Write-Log "Successfully accessed repository: $($repoResponse.full_name)" "SUCCESS"
-
+        
         return $true
     }
     catch {
@@ -127,12 +127,12 @@ function Get-UserConfirmation {
     param(
         [hashtable]$DateInfo
     )
-
+    
     if ($SkipConfirmation) {
         Write-Log "Skipping confirmation as requested" "WARNING"
         return $true
     }
-
+    
     Write-Host ""
     Write-Host "⚠️  IMPORTANT CONFIRMATION REQUIRED ⚠️" -ForegroundColor Red
     Write-Host ""
@@ -145,27 +145,27 @@ function Get-UserConfirmation {
     Write-Host ""
     Write-Host "Execution will take approximately $([Math]::Ceiling($DateInfo.EstimatedCommits / 200)) minutes." -ForegroundColor Yellow
     Write-Host ""
-
+    
     do {
         $response = Read-Host "Do you want to proceed? (yes/no/test)"
         $response = $response.ToLower().Trim()
-
+        
         switch ($response) {
-            "yes" {
+            "yes" { 
                 Write-Log "User confirmed execution" "SUCCESS"
-                return $true
+                return $true 
             }
-            "y" {
+            "y" { 
                 Write-Log "User confirmed execution" "SUCCESS"
-                return $true
+                return $true 
             }
-            "no" {
+            "no" { 
                 Write-Log "User cancelled execution" "WARNING"
-                return $false
+                return $false 
             }
-            "n" {
+            "n" { 
                 Write-Log "User cancelled execution" "WARNING"
-                return $false
+                return $false 
             }
             "test" {
                 Write-Log "User selected test mode" "INFO"
@@ -181,35 +181,35 @@ function Get-UserConfirmation {
 # Main execution
 try {
     Set-Location $repoPath
-
+    
     Write-Host "Enhanced Historical Backdated GitHub Commit System v2.0" -ForegroundColor Magenta
     Write-Host "Repository: $repoPath" -ForegroundColor White
     Write-Host ""
-
+    
     # Show date range and get confirmation
     $dateInfo = Show-HistoricalDateRange
-
+    
     if ($TestMode) {
         Write-Log "Running in TEST MODE" "INFO"
         & "$repoPath\test_backdate_system.ps1"
         exit 0
     }
-
+    
     if ($DryRun) {
         Write-Log "Running in DRY-RUN MODE" "INFO"
         Write-Log "This would create $($dateInfo.EstimatedCommits) commits across $($dateInfo.TargetDays) days" "INFO"
         Write-Log "No actual commits will be created" "SUCCESS"
         exit 0
     }
-
+    
     # Validate GitHub access
     if (-not (Test-GitHubAccess)) {
         throw "GitHub access validation failed. Please check your credentials."
     }
-
+    
     # Get user confirmation
     $confirmation = Get-UserConfirmation -DateInfo $dateInfo
-
+    
     if ($confirmation -eq $false) {
         Write-Log "Execution cancelled by user" "WARNING"
         exit 0
@@ -219,17 +219,17 @@ try {
         & "$repoPath\test_backdate_system.ps1"
         exit 0
     }
-
+    
     # Execute the main system
     Write-Log "Starting enhanced historical backdated commit system..." "SUCCESS"
     Write-Log "This will create commits from November 1st, 2022 to present" "INFO"
-
+    
     # Run the comprehensive system
     & "$repoPath\comprehensive_backdate_system.ps1" -Force:$Force
-
+    
     Write-Log "Enhanced historical backdated commit system completed!" "SUCCESS"
     Write-Log "Check your GitHub profile: https://github.com/$($GitHubConfig.Username)" "INFO"
-
+    
 }
 catch {
     Write-Log "Execution failed: $($_.Exception.Message)" "ERROR"

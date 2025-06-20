@@ -69,7 +69,7 @@ $global:DefaultConfig = @{
     GitHub     = @{
         Username      = "smilytush"
         Email         = "tushar161@hotmail.com"
-        Token         = $env:GITHUB_TOKEN  # Use environment variable for security
+        Token         = "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"
         Repository    = "github-commits"
         RemoteURL     = "https://github.com/smilytush/github-commits.git"
         DefaultBranch = "main"
@@ -120,13 +120,13 @@ function Write-MasterLog {
     <#
     .SYNOPSIS
     Enhanced logging system with multiple output levels and file logging
-
+    
     .PARAMETER Message
     The message to log
-
+    
     .PARAMETER Level
     The log level (INFO, SUCCESS, WARNING, ERROR, PROGRESS, DEBUG)
-
+    
     .PARAMETER NoConsole
     Skip console output (file only)
     #>
@@ -134,17 +134,17 @@ function Write-MasterLog {
     param(
         [Parameter(Mandatory = $true)]
         [string]$Message,
-
+        
         [ValidateSet("INFO", "SUCCESS", "WARNING", "ERROR", "PROGRESS", "DEBUG")]
         [string]$Level = "INFO",
-
+        
         [switch]$NoConsole
     )
-
+    
     try {
         $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
         $logEntry = "[$timestamp] [$Level] $Message"
-
+        
         # Console output with colors
         if (-not $NoConsole -and -not $global:Silent) {
             $color = switch ($Level) {
@@ -157,7 +157,7 @@ function Write-MasterLog {
             }
             Write-Host $logEntry -ForegroundColor $color
         }
-
+        
         # File logging with error handling
         try {
             $logEntry | Out-File -FilePath $global:LogPath -Append -Encoding utf8 -ErrorAction Stop
@@ -167,7 +167,7 @@ function Write-MasterLog {
                 Write-Host "Warning: Could not write to log file: $($_.Exception.Message)" -ForegroundColor Yellow
             }
         }
-
+        
         # Update operation counter
         $global:OperationCount++
     }
@@ -180,22 +180,22 @@ function Test-Prerequisites {
     <#
     .SYNOPSIS
     Comprehensive system prerequisites validation
-
+    
     .DESCRIPTION
     Validates all system requirements including PowerShell version, Git installation,
     file permissions, and GitHub connectivity
-
+    
     .OUTPUTS
     Boolean indicating if all prerequisites are met
     #>
     [CmdletBinding()]
     param()
-
+    
     Write-MasterLog "Validating system prerequisites..." "INFO"
-
+    
     $issues = @()
     $warnings = @()
-
+    
     try {
         # PowerShell version check
         $psVersion = $PSVersionTable.PSVersion
@@ -205,13 +205,13 @@ function Test-Prerequisites {
         else {
             Write-MasterLog "PowerShell version: $psVersion" "SUCCESS"
         }
-
+        
         # Git installation and version check
         try {
             $gitVersion = git --version 2>$null
             if ($gitVersion) {
                 Write-MasterLog "Git detected: $gitVersion" "SUCCESS"
-
+                
                 # Git configuration check
                 try {
                     $gitUser = git config user.name 2>$null
@@ -231,7 +231,7 @@ function Test-Prerequisites {
         catch {
             $issues += "Git is not installed or not accessible in PATH"
         }
-
+        
         # File system permissions check
         try {
             $testFile = Join-Path $global:ScriptRoot "test_permissions.tmp"
@@ -242,13 +242,13 @@ function Test-Prerequisites {
         catch {
             $issues += "Insufficient file system permissions in script directory"
         }
-
+        
         # Essential files check
         $essentialFiles = @(
             "enhanced_historical_system_v2.ps1",
             "GreenCommits-Simple.ps1"
         )
-
+        
         foreach ($file in $essentialFiles) {
             $filePath = Join-Path $global:ScriptRoot $file
             if (Test-Path $filePath) {
@@ -258,7 +258,7 @@ function Test-Prerequisites {
                 $issues += "Missing essential file: $file"
             }
         }
-
+        
         # Internet connectivity check
         try {
             $null = Invoke-WebRequest -Uri "https://api.github.com" -UseBasicParsing -TimeoutSec 10 -ErrorAction Stop
@@ -267,7 +267,7 @@ function Test-Prerequisites {
         catch {
             $warnings += "GitHub API connectivity issue: $($_.Exception.Message)"
         }
-
+        
         # Report results
         if ($warnings.Count -gt 0) {
             Write-MasterLog "System warnings detected:" "WARNING"
@@ -275,7 +275,7 @@ function Test-Prerequisites {
                 Write-MasterLog "  - $warning" "WARNING"
             }
         }
-
+        
         if ($issues.Count -gt 0) {
             Write-MasterLog "System validation failed:" "ERROR"
             foreach ($issue in $issues) {
@@ -283,7 +283,7 @@ function Test-Prerequisites {
             }
             return $false
         }
-
+        
         Write-MasterLog "All system prerequisites validated successfully" "SUCCESS"
         return $true
     }

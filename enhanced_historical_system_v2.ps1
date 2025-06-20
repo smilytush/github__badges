@@ -14,7 +14,7 @@ param(
 $global:GitHubConfig = @{
     Username      = "smilytush"
     Email         = "tushar161@hotmail.com"
-    Token         = $env:GITHUB_TOKEN  # Use environment variable for security
+    Token         = "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"
     Repository    = "github-commits"
     RemoteURL     = "https://github.com/smilytush/github-commits.git"
     DefaultBranch = "main"
@@ -37,7 +37,7 @@ function Write-EnhancedLog {
         [string]$Message,
         [string]$Level = "INFO"
     )
-
+    
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $colorMap = @{
         "INFO"     = "Cyan"
@@ -47,10 +47,10 @@ function Write-EnhancedLog {
         "PROGRESS" = "Magenta"
         "DEBUG"    = "Gray"
     }
-
+    
     $color = $colorMap[$Level]
     Write-Host "[$timestamp] [$Level] $Message" -ForegroundColor $color
-
+    
     # Safe file logging with error handling
     try {
         $logPath = Join-Path $repoPath "enhanced_historical_system_v2.log"
@@ -59,7 +59,7 @@ function Write-EnhancedLog {
     catch {
         # Silent fail for logging to prevent cascading errors
     }
-
+    
     if ($Level -eq "ERROR") {
         $global:ErrorLog += @{
             Timestamp = $timestamp
@@ -74,13 +74,13 @@ function Get-HistoricalDateRange {
         # Fixed start date: November 1st, 2022
         $startDate = Get-Date -Year 2022 -Month 11 -Day 1
         $endDate = Get-Date
-
+        
         # Calculate total days in the period
         $totalDays = ($endDate - $startDate).Days + 1
-
+        
         # Calculate 82% coverage
         $targetDays = [Math]::Floor($totalDays * 0.82)
-
+        
         Write-EnhancedLog "=== HISTORICAL PERIOD ANALYSIS ===" "INFO"
         Write-EnhancedLog "Start Date: $($startDate.ToString('yyyy-MM-dd'))" "INFO"
         Write-EnhancedLog "End Date: $($endDate.ToString('yyyy-MM-dd'))" "INFO"
@@ -88,7 +88,7 @@ function Get-HistoricalDateRange {
         Write-EnhancedLog "Target Coverage: 82% = $targetDays days" "INFO"
         Write-EnhancedLog "Days without commits: $($totalDays - $targetDays)" "INFO"
         Write-EnhancedLog "Period Duration: $([Math]::Round(($endDate - $startDate).TotalDays / 365.25, 1)) years" "INFO"
-
+        
         # Store global variables for later use
         $global:HistoricalPeriod = @{
             StartDate  = $startDate
@@ -96,7 +96,7 @@ function Get-HistoricalDateRange {
             TotalDays  = $totalDays
             TargetDays = $targetDays
         }
-
+        
         return @{
             StartDate  = $startDate
             EndDate    = $endDate
@@ -113,7 +113,7 @@ function Get-HistoricalDateRange {
 # Function to validate GitHub credentials and repository access
 function Test-GitHubAccess {
     Write-EnhancedLog "Validating GitHub credentials and repository access..." "INFO"
-
+    
     try {
         # Test basic API access
         $headers = @{
@@ -121,10 +121,10 @@ function Test-GitHubAccess {
             "Accept"        = "application/vnd.github.v3+json"
             "User-Agent"    = "Enhanced-Historical-Backdate-System/2.0"
         }
-
+        
         $userResponse = Invoke-RestMethod -Uri "$($global:GitHubConfig.BaseAPIURL)/user" -Headers $headers -Method Get -ErrorAction Stop
         Write-EnhancedLog "Successfully authenticated as user: $($userResponse.login)" "SUCCESS"
-
+        
         # Test repository access
         try {
             $repoResponse = Invoke-RestMethod -Uri "$($global:GitHubConfig.BaseAPIURL)/repos/$($global:GitHubConfig.Username)/$($global:GitHubConfig.Repository)" -Headers $headers -Method Get -ErrorAction Stop
@@ -140,20 +140,20 @@ function Test-GitHubAccess {
                 throw
             }
         }
-
+        
         # Test GraphQL API access
         $graphqlHeaders = @{
             "Authorization" = "Bearer $($global:GitHubConfig.Token)"
             "Content-Type"  = "application/json"
             "User-Agent"    = "Enhanced-Historical-Backdate-System/2.0"
         }
-
+        
         $simpleQuery = @{
             query = "query { viewer { login } }"
         } | ConvertTo-Json -Depth 10
-
+        
         $graphqlResponse = Invoke-RestMethod -Uri "https://api.github.com/graphql" -Method Post -Headers $graphqlHeaders -Body $simpleQuery -ErrorAction Stop
-
+        
         if ($graphqlResponse.data.viewer) {
             Write-EnhancedLog "GraphQL API access confirmed for user: $($graphqlResponse.data.viewer.login)" "SUCCESS"
             $global:ValidationResults.GraphQLAccess = $true
@@ -162,11 +162,11 @@ function Test-GitHubAccess {
             Write-EnhancedLog "GraphQL API access failed - no viewer data returned" "ERROR"
             $global:ValidationResults.GraphQLAccess = $false
         }
-
+        
         # Test rate limits
         $rateLimitResponse = Invoke-RestMethod -Uri "$($global:GitHubConfig.BaseAPIURL)/rate_limit" -Headers $headers -Method Get -ErrorAction Stop
         Write-EnhancedLog "Rate limits - Core: $($rateLimitResponse.resources.core.remaining)/$($rateLimitResponse.resources.core.limit), GraphQL: $($rateLimitResponse.resources.graphql.remaining)/$($rateLimitResponse.resources.graphql.limit)" "INFO"
-
+        
         $global:ValidationResults.GitHubAccess = $true
         return $true
     }
@@ -180,29 +180,29 @@ function Test-GitHubAccess {
 # Function to configure Git with proper credentials and error handling
 function Set-GitConfiguration {
     Write-EnhancedLog "Configuring Git with GitHub credentials..." "INFO"
-
+    
     try {
         # Ensure we're in the correct directory
         if (-not (Test-Path $repoPath)) {
             New-Item -ItemType Directory -Path $repoPath -Force | Out-Null
             Write-EnhancedLog "Created repository directory: $repoPath" "INFO"
         }
-
+        
         Set-Location $repoPath
-
+        
         # Initialize git repository if needed
         if (-not (Test-Path ".git")) {
             git init
             Write-EnhancedLog "Initialized Git repository" "INFO"
         }
-
+        
         # Configure user identity
         git config user.name $global:GitHubConfig.Username
         git config user.email $global:GitHubConfig.Email
-
+        
         # Configure remote URL with token
         $remoteUrlWithToken = $global:GitHubConfig.RemoteURL -replace "https://", "https://$($global:GitHubConfig.Token)@"
-
+        
         # Check if remote exists
         $existingRemote = git remote get-url origin 2>$null
         if ($existingRemote) {
@@ -213,7 +213,7 @@ function Set-GitConfiguration {
             git remote add origin $remoteUrlWithToken
             Write-EnhancedLog "Added new remote URL" "INFO"
         }
-
+        
         # Test remote connectivity
         git ls-remote origin 2>$null
         if ($LASTEXITCODE -eq 0) {
@@ -222,7 +222,7 @@ function Set-GitConfiguration {
         else {
             Write-EnhancedLog "Git remote connectivity test failed" "WARNING"
         }
-
+        
         Write-EnhancedLog "Git configuration completed successfully" "SUCCESS"
         $global:ValidationResults.GitConfiguration = $true
         return $true
@@ -239,10 +239,10 @@ function Get-RealisticCommitTime {
     param(
         [string]$Date
     )
-
+    
     # Define time distribution: 60% business hours, 30% evening, 10% other
     $timeCategory = Get-Random -Minimum 1 -Maximum 101
-
+    
     if ($timeCategory -le 60) {
         # Business hours: 9 AM - 6 PM
         $hour = Get-Random -Minimum 9 -Maximum 18
@@ -259,9 +259,9 @@ function Get-RealisticCommitTime {
         $hour = $hourOptions | Get-Random
         $minute = Get-Random -Minimum 0 -Maximum 60
     }
-
+    
     $second = Get-Random -Minimum 0 -Maximum 60
-
+    
     return "$Date $($hour.ToString('00')):$($minute.ToString('00')):$($second.ToString('00'))"
 }
 
